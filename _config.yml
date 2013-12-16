@@ -1,0 +1,44 @@
+title:            frank hadder
+description:      the personal website of frank hadder
+logo:             site-logo.png
+disqus_shortname: luckyllama
+search:           true
+#Comment out url when working locally to resolve base urls correctly
+#url:              http://frankhadder.com
+
+# Owner/author information
+owner:
+  name:           frank hadder
+  avatar:         https://s.gravatar.com/avatar/66c9ff85009c90f497921783acce4b41?s=200
+  email:          luckyllama@gmail.com
+  # Social networking links used in footer. Update and remove as you like.
+  twitter:        luckyllamas
+  facebook:       
+  github:         luckyllama
+  linkedin:
+  instagram:
+  tumblr:		  luckyllama
+  # For Google Authorship https://plus.google.com/authorship
+  google_plus:    "https://plus.google.com/+frankhadderrocks"
+
+# Analytics and webmaster tools stuff goes here
+google_analytics: UA-941162-5
+google_verify:
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# Links to include in top navigation
+# For external links add external: true
+links:
+  - title: About
+    url: /about
+  - title: Articles
+    url: /articles
+
+# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone:    America/Vancouver
+pygments:    true
+markdown:    kramdown
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /:categories/:title
