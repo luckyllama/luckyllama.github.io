@@ -31,13 +31,13 @@
 {% endif %}
 
 {% if page.image.feature %}
-<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+<header class="masthead with-image" itemscope itemtype="http://schema.org/Organization">
 	<div class="wrap">
 		<a href="{{ site.url }}" class="site-logo" rel="home" title="{{ site.title }}" itemprop="url"><img src="{{ site.url }}/images/{{ site.logo }}" width="200" height="200" alt="{{ site.title }} logo" class="animated bounceInDown" itemprop="logo"></a>
 	</div>
 </header>
 {% else %}
-<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+<header class="masthead no-image" itemscope itemtype="http://schema.org/Organization">
 	<div class="wrap">
 		<a href="{{ site.url }}" class="site-logo" rel="home" title="{{ site.title }}" itemprop="url"><img src="{{ site.url }}/images/{{ site.logo }}" width="200" height="200" alt="{{ site.title }} logo" class="animated fadeInUp" itemprop="logo"></a>
 		<h1 class="site-title animated fadeIn"><a href="{{ site.url }}">{{ site.title }}</a></h1>

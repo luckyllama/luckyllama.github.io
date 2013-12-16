@@ -1,10 +1,10 @@
 title:            frank hadder
-description:      the personal website of frank hadder
+description:      the personal website of 
 logo:             site-logo.png
 disqus_shortname: luckyllama
 search:           true
 #Comment out url when working locally to resolve base urls correctly
-#url:              http://frankhadder.com
+url:              http://frankhadder.com
 
 # Owner/author information
 owner:
