@@ -20,7 +20,7 @@ shown line by line with SVG graphics.
 Most algorithms were copied from either [sortvis.org](http://sortvis.org) or
 [Rosetta Code](http://rosettacode.org/wiki/Sorting_algorithms).
 
-You can view all the coffeescript code on [github](https://github.com/luckyllama/frankhadder.com/blob/master/assets/js/sorting.coffee).
+You can view all the coffeescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/master/assets/js/projects/sorting/sorting.coffee).
 
 _Note: SVG is an advanced html5 feature. I've only tested this page in the lastest version of Chrome and Firefox, IE9,
 and Safari for iPhone 4/new iPad._
