@@ -13,23 +13,34 @@
 
 <div id="main" role="main" itemprop="mainContentOfPage">
   <article class="entry" itemscope>
-    {% if page.image.feature %}<img src="{{ site.url }}/images/{{ page.image.feature }}" class="entry-feature-image" alt="{{ page.title }}" itemprop="image">{% if page.image.credit %}<p class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a>{% endif %}{% endif %}
+    {% if page.image.feature %}
+    <img src="{{ site.url }}/images/{{ page.image.feature }}" class="entry-feature-image" alt="{{ page.title }}" itemprop="image">
+    {% if page.image.credit %}
+    <p class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a>
+    {% endif %}
+    {% endif %}
+    
     <div class="entry-wrapper">
       <header class="entry-header">
-        <h1 class="entry-title" itemprop="name">{% if page.headline %}{{ page.headline }}{% else %}{{ page.title }}</h1>{% endif %}
+        <h1 class="entry-title" itemprop="name">
+          {% if page.headline %}
+          {{ page.headline }}
+          {% else %}
+          {{ page.title }}</h1>
+          {% endif %}
       </header>
       <div class="entry-content" itemprop="description">
         {{ content }}
-      </div><!-- /.entry-content -->
-    </div><!-- /.entry-wrapper -->
+      </div>
+    </div>
   </article>
-</div><!-- /#main -->
+</div>
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
     {% include footer.html %}
   </footer>
-</div><!-- /.footer-wrapper -->
+</div>
 
 {% include scripts.html %}          
 
