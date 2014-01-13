@@ -2,7 +2,7 @@
 layout: post
 title: Barrier-Grid Optical Illusion
 description: "A transparent mask moved on top of a static image creates the illusion of animation in this optical illusion."
-modified: 2013-12-21
+modified: 2013-01-13
 category: articles
 tags: [projects]
 comments: true 
