@@ -25,6 +25,8 @@ A barrier-grid animation is an interesting real-world animation technique that's
 	</div>
 </div>
 
+_[source](http://www.flickr.com/photos/r8r/3444024147/sizes/o/)_
+
 <div class="barrier-grid">
 	<div class="images">
 		<img src="/images/projects/barrier-grid/dancer/dancer_1.png" class="source-image">
@@ -36,8 +38,38 @@ A barrier-grid animation is an interesting real-world animation technique that's
 	</div>
 </div>
 
+_[source](http://en.wikipedia.org/wiki/File:Spinning_Dancer.gif)_
+
 You can view all the coffeescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/master/assets/js/projects/barrier-grid/main.coffee).
 
 ### Further Uses
 * This technique has been called Scanimation by the artist Rufus Butler Seder who has turned it into a series of [children's books](http://youtu.be/LOTqX8ddLwg).  
 * [Magic Carp-et](http://youtu.be/Ua7HOX32PGA) is a real life prototype for a rug-table combo that uses this techinque. 
+
+### More Examples
+
+<div class="barrier-grid">
+	<div class="images">
+		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_1.png" class="source-image">
+		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_2.png" class="source-image">
+		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_3.png" class="source-image">
+		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_4.png" class="source-image">
+		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_5.png" class="source-image">
+		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_6.png" class="source-image">
+	</div>
+</div>
+
+_[source](http://gifrific.com/super-mario-bouncing-on-music-note/)_
+
+<div class="barrier-grid">
+	<div class="images">
+		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_1.png" class="source-image">
+		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_2.png" class="source-image">
+		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_3.png" class="source-image">
+		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_4.png" class="source-image">
+		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_5.png" class="source-image">
+		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_6.png" class="source-image">
+	</div>
+</div>
+
+_[source](http://youtu.be/a1Y73sPHKxw)_
