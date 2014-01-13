@@ -102,8 +102,10 @@
       return Illusion;
 
     })();
-    return $(".barrier-grid").each(function(index, el) {
-      return new Illusion($(el));
+    return $(window).on("load", function() {
+      return $(".barrier-grid").each(function(index, el) {
+        return new Illusion($(el));
+      });
     });
   })(jQuery);
 
