@@ -40,8 +40,6 @@ _[source](http://www.flickr.com/photos/r8r/3444024147/sizes/o/)_
 
 _[source](http://en.wikipedia.org/wiki/File:Spinning_Dancer.gif)_
 
-You can view all the coffeescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/master/assets/js/projects/barrier-grid/main.coffee).
-
 ### Further Uses
 * This technique has been called Scanimation by the artist Rufus Butler Seder who has turned it into a series of [children's books](http://youtu.be/LOTqX8ddLwg).  
 * [Magic Carp-et](http://youtu.be/Ua7HOX32PGA) is a real life prototype for a rug-table combo that uses this techinque. 
@@ -73,3 +71,6 @@ _[source](http://gifrific.com/super-mario-bouncing-on-music-note/)_
 </div>
 
 _[source](http://youtu.be/a1Y73sPHKxw)_
+
+
+You can view all the coffeescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/master/assets/js/projects/barrier-grid/main.coffee) as well as the [html](https://github.com/luckyllama/luckyllama.github.io/blob/master/_posts/2013-01-13-barrier-grid.md).
