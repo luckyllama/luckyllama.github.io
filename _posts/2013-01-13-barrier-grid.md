@@ -48,7 +48,7 @@ You can view all the coffeescript code on [github](https://github.com/luckyllama
 
 ### More Examples
 
-<div class="barrier-grid">
+<div class="barrier-grid" data-width="1">
 	<div class="images">
 		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_1.png" class="source-image">
 		<img src="/images/projects/barrier-grid/mario-jump/mario-jump_2.png" class="source-image">
@@ -61,7 +61,7 @@ You can view all the coffeescript code on [github](https://github.com/luckyllama
 
 _[source](http://gifrific.com/super-mario-bouncing-on-music-note/)_
 
-<div class="barrier-grid">
+<div class="barrier-grid" data-width="1">
 	<div class="images">
 		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_1.png" class="source-image">
 		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_2.png" class="source-image">

@@ -5,7 +5,7 @@
 			@canvas = document.createElement("canvas")
 			@context = @canvas.getContext("2d")
 
-			width = 2;
+			width = @$el.data("width") || 2;
 			@$images = $(".source-image", @$el)
 			count = @$images.length
 

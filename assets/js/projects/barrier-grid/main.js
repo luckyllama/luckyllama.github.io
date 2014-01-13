@@ -8,7 +8,7 @@
         this.$el = $el;
         this.canvas = document.createElement("canvas");
         this.context = this.canvas.getContext("2d");
-        width = 2;
+        width = this.$el.data("width") || 2;
         this.$images = $(".source-image", this.$el);
         count = this.$images.length;
         this.addHtml();
