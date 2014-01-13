@@ -11,8 +11,8 @@
         width = this.$el.data("width") || 2;
         this.$images = $(".source-image", this.$el);
         count = this.$images.length;
-        this.forwardClass = "forward " + (this.$el.data("playModifier"));
-        this.backwardClass = "backward " + (this.$el.data("playModifier"));
+        this.forwardClass = "forward " + (this.$el.data("playModifier") || '');
+        this.backwardClass = "backward " + (this.$el.data("playModifier") || '');
         this.addHtml();
         this.addEvents();
         this.$images.each(function(index, img) {

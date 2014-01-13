@@ -9,8 +9,8 @@
 			@$images = $(".source-image", @$el)
 			count = @$images.length
 
-			@forwardClass = "forward #{@$el.data("playModifier")}"
-			@backwardClass = "backward #{@$el.data("playModifier")}"
+			@forwardClass = "forward #{@$el.data("playModifier") || ''}"
+			@backwardClass = "backward #{@$el.data("playModifier") || ''}"
 
 			@addHtml()
 			@addEvents()
