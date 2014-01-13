@@ -108,8 +108,10 @@
 
 			@$mask.css("background-image", "url(#{@canvas.toDataURL()})")
 
-	$(".barrier-grid").each((index, el) -> 
-		new Illusion($(el))
+	$(window).on("load", ->
+		$(".barrier-grid").each((index, el) -> 
+			new Illusion($(el))
+		)
 	)
 
 )(jQuery)
