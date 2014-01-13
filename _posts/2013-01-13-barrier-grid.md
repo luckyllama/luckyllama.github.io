@@ -61,7 +61,7 @@ You can view all the coffeescript code on [github](https://github.com/luckyllama
 
 _[source](http://gifrific.com/super-mario-bouncing-on-music-note/)_
 
-<div class="barrier-grid" data-width="1">
+<div class="barrier-grid" data-width="1" data-play-modifier="slow">
 	<div class="images">
 		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_1.png" class="source-image">
 		<img src="/images/projects/barrier-grid/dramatic-chipmonk/dramatic-chipmonk_2.png" class="source-image">

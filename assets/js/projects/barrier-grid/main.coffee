@@ -9,6 +9,9 @@
 			@$images = $(".source-image", @$el)
 			count = @$images.length
 
+			@forwardClass = "forward #{@$el.data("playModifier")}"
+			@backwardClass = "backward #{@$el.data("playModifier")}"
+
 			@addHtml()
 			@addEvents()
 
@@ -50,12 +53,12 @@
 		
 		addEvents: () ->
 			@$forward.on "click", () => 
-				@$mask.show().removeClass("backward").toggleClass("forward")
+				@$mask.show().removeClass(@backwardClass).toggleClass(@forwardClass)
 				@$forward.toggleClass("active", @$mask.is(".forward"))
 				@$backward.toggleClass("active", @$mask.is(".backward"))
 
 			@$backward.on "click", () => 
-				@$mask.show().removeClass("forward").toggleClass("backward")
+				@$mask.show().removeClass(@forwardClass).toggleClass(@backwardClass)
 				@$forward.toggleClass("active", @$mask.is(".forward"))
 				@$backward.toggleClass("active", @$mask.is(".backward"))
 
