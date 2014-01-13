@@ -106,7 +106,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/js/projects/sorting/sorting.js': 'assets/js/projects/sorting/sorting.coffee', // 1:1 compile
-          'assets/js/projects/stripe-illusion/main.js': 'assets/js/projects/stripe-illusion/main.coffee', // 1:1 compile
+          'assets/js/projects/barrier-grid/main.js': 'assets/js/projects/barrier-grid/main.coffee', // 1:1 compile
           //'path/to/another.js': ['path/to/sources/*.coffee', 'path/to/more/*.coffee'] // concat then compile into single file
         }
       }

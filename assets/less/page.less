@@ -517,7 +517,7 @@ span + .entry-title {
 // stripe illusion page
 // --------------------------------------------------
 
-.stripe-illusion {
+.barrier-grid {
 	height: 500px; 
 	position: relative;
 	margin-bottom: 60px;
@@ -538,12 +538,17 @@ span + .entry-title {
 		left: 0; 
 		width: 100%;
 		height: 100%;
+		cursor: pointer;
+
 		&.forward {
-			-webkit-animation: forward 12s infinite linear;
+			-webkit-animation: forward 50s infinite linear;
+			animation: forward 50s infinite linear;
 		}
 		&.backward {
-			-webkit-animation: forward 12s infinite reverse linear;
+			-webkit-animation: forward 50s infinite reverse linear;
+			animation: forward 50s infinite reverse linear;
 		}
+		&.half { width: 50%; }
 
 		@-webkit-keyframes forward { 
 			from { background-position: 0%; }
@@ -552,10 +557,45 @@ span + .entry-title {
 	}
 	.controls {
 		position: absolute;
-		bottom: -30px;
+		bottom: -60px;
+		width: 100%;
+		padding: 18px 0;
 
-		.active {
-			color: red;
+		.automate {
+			float: left;
+		}
+		.show-base {
+			float: right;
+		}
+		.drag-hint {
+			color: #fff;
+			background-color: #000;
+			position: absolute;
+			bottom: 60px;
+			width: 100%;
+			text-align: center;
+			padding: 5px 0;
+			opacity: 0.9;
+			-webkit-transition: opacity .5s;
+			transition: opacity .5s;
+
+			&.hide {
+				opacity: 0;
+			}
+		}
+
+		.active, span:hover {
+			color: @active-color;
+		}
+
+		span { 
+			cursor: pointer; 
+		}
+
+		.icon { 
+			padding: 0 5px; 
+			-webkit-transition: none;
+			transition: none;
 		}
 	}
 }
