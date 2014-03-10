@@ -23,9 +23,8 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          'assets/css/main.min.css': [
-            'assets/less/main.less'
-          ]
+          'assets/css/main.min.css': ['assets/less/main.less'],
+          'assets/css/music-painting.min.css': ['assets/less/projects/music-painting.less']
         }
       }
     },
@@ -66,7 +65,7 @@ module.exports = function(grunt) {
     watch: {
       less: {
         files: [
-          'assets/less/*.less'
+          'assets/less/**/*.less'
         ],
         tasks: ['recess', 'copy']
       },
@@ -105,8 +104,9 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: {
-          'assets/js/projects/sorting/sorting.js': 'assets/js/projects/sorting/sorting.coffee', // 1:1 compile
-          'assets/js/projects/barrier-grid/main.js': 'assets/js/projects/barrier-grid/main.coffee', // 1:1 compile
+          'assets/js/projects/sorting/sorting.js': 'assets/js/projects/sorting/sorting.coffee',
+          'assets/js/projects/barrier-grid/main.js': 'assets/js/projects/barrier-grid/main.coffee',
+          'assets/js/projects/music-painting/main.js': 'assets/js/projects/music-painting/*.coffee',
           //'path/to/another.js': ['path/to/sources/*.coffee', 'path/to/more/*.coffee'] // concat then compile into single file
         }
       }

@@ -6,7 +6,7 @@
 				{% if link.external %}
 					<a href="{{ link.url }}">{{ link.title }}</a>
 				{% else %}
-					<a href="/{{ link.url }}">{{ link.title }}</a>
+					<a href="{{ link.url }}">{{ link.title }}</a>
 				{% endif %} 
 			</li>
 	        {% endfor %}
