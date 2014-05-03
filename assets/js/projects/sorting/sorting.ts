@@ -1,5 +1,6 @@
 /// <reference path="../../vendor/lodash.d.ts" />
 /// <reference path="../../vendor/jquery.d.ts" />
+/// <reference path="../../vendor/d3.d.ts" />
 /// <reference path="../../vendor/modernizr.d.ts" />
 
 module Sorting {
@@ -295,6 +296,48 @@ class SvgDisplay implements Display {
 }
 
 
+class D3Display implements Display {
+	constructor(public $el, logs) {
+		var data = this._getData(logs);
+		console.log(data);
+
+		var svg = d3.select($el[0]).append('svg')
+			.attr('height', $el.height())
+			.attr('width', $el.width());
+		var g = svg.append('g');
+
+		var x = d3.scale.linear()
+		    .range([0, logs.length]);
+	    var xAxis = d3.svg.axis()
+		    .scale(x)
+		    .orient("bottom");
+
+		var y = d3.scale.linear()
+		    .range(0, logs[0].length);
+		var yAxis = d3.svg.axis()
+		    .scale(y)
+		    .orient("left");
+
+		var line = d3.svg.line()
+			.interpolate("basis")
+			.x(function(d) { return x(d.date); })
+			.y(function(d) { return y(d.temperature); });
+	}
+
+	_getData(logs) {
+		var data : {}[] = [logs[0].length];
+		_.each(logs, function (log, i) {
+			_.each(log, function (num, i) {
+				if (!data[num]) {
+					//data[num] = { name: "" + num, positions: number[] = [] };
+				}
+				data[num].positions.push(i);
+			});
+		});
+		return data;
+	}
+}
+
 $(function () {
-	var view = new SortingView($(".sorting"));
+	var view = new SortingView($(".sorting"), D3Display);
 });
