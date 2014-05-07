@@ -88,16 +88,16 @@ module Sorting {
 		solve() {
 			var list: number[] = this.initList.slice();
 			var heap_sort = (list) => {
-        		put_array_in_heap_order(list);
-        		var end: number = list.length - 1;
-        		while (end > 0) {
+				put_array_in_heap_order(list);
+				var end: number = list.length - 1;
+				while (end > 0) {
 					this.swap(list, 0, end);
-        			this.log.push(list.slice());
+					this.log.push(list.slice());
 					sift_element_down_heap(list, 0, end);
 					end--;
-        		}
+				}
 			};
-       
+	   
 			var put_array_in_heap_order = (list) => {
 				var i: number = Math.floor(list.length / 2 - 1);
 				while (i >= 0) {
@@ -189,11 +189,10 @@ class SortingView {
 	}
 
 	render(logs: number[][], initList: number[] = null) {
-		var display;
 		if (logs.length === 0) {
-		return;
+			return;
 		}
-		display = new this.display($(".visual", this.$el), logs);
+		var display = new this.display($(".visual", this.$el), logs);
 		if (initList != null) {
 			$(".facts .init-list span", this.$el).text(initList.join());
 		}
@@ -228,7 +227,7 @@ class Display {}
 
 class SvgDisplay implements Display {
 	constructor(public $el, logs) {
-	    var currentElementIndex, currentIndex, elementIndex, grid, line, lineDistance, lines, log, logIndex, nextElementIndex, nextLog, rect, stepWidth, strokeStyle, svg, svgNS, _i, _j, _k, _ref, _ref1, _ref2;
+		var currentElementIndex, currentIndex, elementIndex, grid, line, lineDistance, lines, log, logIndex, nextElementIndex, nextLog, rect, stepWidth, strokeStyle, svg, svgNS, _i, _j, _k, _ref, _ref1, _ref2;
 		if (!Modernizr.svg) {
 			$el.before($("<p>").text("This feature is only supported on IE 9+, and most alternate browsers (e.g. Chome, Firefox)."));
 			return;
@@ -295,41 +294,88 @@ class SvgDisplay implements Display {
 	}
 }
 
+interface ItemData {
+	name: string;
+	positions: number[];
+}
 
 class D3Display implements Display {
-	constructor(public $el, logs) {
-		var data = this._getData(logs);
-		console.log(data);
+	data: ItemData[];
+	stepCount: number;
+	stepWidth: number;
+	itemCount: number;
+	itemHeight: number;
+	items: any;
+	itemLine: any;
+	itemWidth: number = 4;
+	x: any;
+	y: any;
 
-		var svg = d3.select($el[0]).append('svg')
-			.attr('height', $el.height())
-			.attr('width', $el.width());
-		var g = svg.append('g');
+	constructor(public $el, logs: number[][]) {
+		this.data = this._getItemData(logs);
+		this.stepCount = logs.length;
+		this.stepWidth = $el.width() / this.stepCount;
+		this.itemCount = logs[0].length;
+		this.itemHeight = $el.height() / this.itemCount;
 
-		var x = d3.scale.linear()
-		    .range([0, logs.length]);
-	    var xAxis = d3.svg.axis()
-		    .scale(x)
-		    .orient("bottom");
+		$("svg", $el).remove();
+		
+		var svg = d3.select($el[0]).append("svg")
+			.attr("height", $el.height())
+			.attr("width", $el.width());
+		var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
+		this.items = svg.append("g")
+			.attr("class", "items")
+			.attr("transform", "translate(0," + yOffset + ")");
 
-		var y = d3.scale.linear()
-		    .range(0, logs[0].length);
-		var yAxis = d3.svg.axis()
-		    .scale(y)
-		    .orient("left");
-
-		var line = d3.svg.line()
-			.interpolate("basis")
-			.x(function(d) { return x(d.date); })
-			.y(function(d) { return y(d.temperature); });
+		this._setupItemLine();
+		this._setItemData();
 	}
 
-	_getData(logs) {
-		var data : {}[] = [logs[0].length];
-		_.each(logs, function (log, i) {
-			_.each(log, function (num, i) {
+	_setupItemLine() {
+		this.x = d3.scale.linear()
+			.domain([0, this.stepCount])
+			.range([0, this.$el.width()]);
+
+		this.y = d3.scale.linear()
+			.domain([0, this.itemCount])
+			.range([0, this.$el.height()]);
+
+		this.itemLine = d3.svg.line()
+			.interpolate("basis")
+			.x((d, i) => this.x(i))
+			.y(d => this.y(d));
+	}
+
+	_setItemData() {
+		var baseColor = d3.rgb("#11ffff");
+		var colorDelta = 1 / this.itemCount * 3;
+
+		var item = this.items.selectAll(".item")
+			.data(this.data)
+			.enter().append("g")
+			.attr("class", "item");
+
+		item.append("path")
+			.attr("d", d => this.itemLine(d.positions))
+			.style("stroke", d => baseColor.darker(colorDelta * parseInt(d.name)));
+
+		item.append("circle")
+			.data(d => d)
+			.attr("class", "points")
+			.attr("cx", (d, i) => this.x(i))
+			.attr("cy", d => this.y(d))
+			.attr("r", 5)
+			.attr("fill", d => baseColor.darker(colorDelta * parseInt(d.name)));
+	}
+
+	_getItemData(logs: number[][]) {
+		var data: ItemData[] = [];
+		_.each(logs, (log: number[]) => {
+			_.each(log, (num: number, i) => {
+				num--; // make it '0' indexed
 				if (!data[num]) {
-					//data[num] = { name: "" + num, positions: number[] = [] };
+					data[num] = { name: "" + num, positions: [i] };
 				}
 				data[num].positions.push(i);
 			});
@@ -338,6 +384,6 @@ class D3Display implements Display {
 	}
 }
 
-$(function () {
+$(() => {
 	var view = new SortingView($(".sorting"), D3Display);
 });
