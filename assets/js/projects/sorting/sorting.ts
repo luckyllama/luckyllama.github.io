@@ -310,6 +310,8 @@ class D3Display implements Display {
 	itemWidth: number = 4;
 	x: any;
 	y: any;
+	strokeSize: number = 4;
+	$currentArray: JQuery;
 
 	constructor(public $el, public logs: number[][]) {
 		this.data = this._getItemData(logs);
@@ -317,6 +319,7 @@ class D3Display implements Display {
 		this.stepWidth = $el.width() / this.stepCount;
 		this.itemCount = logs[0].length;
 		this.itemHeight = $el.height() / this.itemCount;
+		this.$currentArray = $(".current-array");
 
 		$("svg", $el).remove();
 
@@ -327,6 +330,7 @@ class D3Display implements Display {
 		this._setupItemLine();
 		this._setStepAreas();
 		this._setItemData();
+		//this._setStepPoints();
 	}
 
 	_setupItemLine() {
@@ -339,7 +343,7 @@ class D3Display implements Display {
 			.range([0, this.$el.height()]);
 
 		this.itemLine = d3.svg.line()
-			.interpolate("basis")
+			.interpolate("cardinal").tension(.99)
 			.x((d, i) => this.x(i))
 			.y(d => this.y(d));
 	}
@@ -374,7 +378,8 @@ class D3Display implements Display {
 		var step = steps.selectAll(".step")
 			.data(this.logs)
 			.enter().append("g")
-			.attr("class", "step");
+			.attr("class", "step")
+			.attr("data-value", d => d.join(", ")) ;
 
 		step.append("rect")
 			.attr("class", "step-area")
@@ -385,23 +390,45 @@ class D3Display implements Display {
 
       this.svg.on("mousemove", () => {
 			var x = Math.floor(this.x.invert(d3.mouse(this.svg.node())[0]));
-			//console.log(x, $("g.step", this.$el).filter(":eq(" + Math.floor(x) + ")"));
 			step.classed("active", (d, i) => i === x);
+			var value = step.filter(":nth-child(" + (x + 1) + ")").attr("data-value")
+			this.$currentArray.text("Step " + (x + 1) + ": " + value);
 		});
 		this.svg.on("mouseout", () => {
 			step.classed("active", false);
+			this.$currentArray.text("");
 		});
-
-		step.append("circle")
-			.attr("class", "point")
-			.attr("cx", (d, i) => { console.log(d); return 1; })
-			.attr("cy", d => 1)
-			.attr("r", 5)
-			.attr("fill", d => baseColor.darker(colorDelta * 1));
 	}
 
 	_setStepPoints() {
+		var baseColor = d3.rgb("#11ffff");
+		var colorDelta = 1 / this.itemCount * 3;
 
+		var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
+		var pointGroup = this.svg.append("g")
+			.attr("class", "step-points");
+
+		var points = pointGroup.selectAll(".step")
+			.data(this.logs)
+			.enter().append("g")
+			.attr("class", "points");
+
+		var createCircles = (el, d, i) => {
+			if (i === 1) {
+				console.log(el, d, i)
+			}
+			el.selectAll(".point")
+			 	.data(d)
+			 	.enter().append("circle")
+				.attr("cx", (d) => this.x(i))
+				.attr("cy", (d, i) => this.y(i) + (this.itemHeight / 2) - (this.strokeSize / 2))
+				.attr("r", 4)
+				.attr("data-value", d => d)
+				.attr("fill", d => baseColor.darker(colorDelta * d));
+		};
+		points.each(function (d, i) {
+			createCircles(d3.select(this), d, i);
+		});
 	}
 
 	_getItemData(logs: number[][]) {
