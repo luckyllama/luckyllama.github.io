@@ -7,6 +7,7 @@ category: articles
 tags: [projects]
 comments: true 
 extra_js:
+  - /assets/js/vendor/d3.min.js
   - /assets/js/projects/sorting/sorting.js
 extra:
   belowHeader: sorting
