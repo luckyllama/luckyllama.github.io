@@ -305,13 +305,13 @@ class D3Display implements Display {
 	stepWidth: number;
 	itemCount: number;
 	itemHeight: number;
-	items: any;
+	svg: any;
 	itemLine: any;
 	itemWidth: number = 4;
 	x: any;
 	y: any;
 
-	constructor(public $el, logs: number[][]) {
+	constructor(public $el, public logs: number[][]) {
 		this.data = this._getItemData(logs);
 		this.stepCount = logs.length;
 		this.stepWidth = $el.width() / this.stepCount;
@@ -319,16 +319,13 @@ class D3Display implements Display {
 		this.itemHeight = $el.height() / this.itemCount;
 
 		$("svg", $el).remove();
-		
-		var svg = d3.select($el[0]).append("svg")
+
+		this.svg = d3.select($el[0]).append("svg")
 			.attr("height", $el.height())
 			.attr("width", $el.width());
-		var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
-		this.items = svg.append("g")
-			.attr("class", "items")
-			.attr("transform", "translate(0," + yOffset + ")");
 
 		this._setupItemLine();
+		this._setStepAreas();
 		this._setItemData();
 	}
 
@@ -351,7 +348,12 @@ class D3Display implements Display {
 		var baseColor = d3.rgb("#11ffff");
 		var colorDelta = 1 / this.itemCount * 3;
 
-		var item = this.items.selectAll(".item")
+		var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
+		var items = this.svg.append("g")
+			.attr("class", "items")
+			.attr("transform", "translate(0," + yOffset + ")");
+
+		var item = items.selectAll(".item")
 			.data(this.data)
 			.enter().append("g")
 			.attr("class", "item");
@@ -359,14 +361,47 @@ class D3Display implements Display {
 		item.append("path")
 			.attr("d", d => this.itemLine(d.positions))
 			.style("stroke", d => baseColor.darker(colorDelta * parseInt(d.name)));
+	}
 
-		item.append("circle")
-			.data(d => d)
-			.attr("class", "points")
-			.attr("cx", (d, i) => this.x(i))
-			.attr("cy", d => this.y(d))
+	_setStepAreas() {
+		var baseColor = d3.rgb("#11ffff");
+		var colorDelta = 1 / this.itemCount * 3;
+
+		var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
+		var steps = this.svg.append("g")
+			.attr("class", "step-areas");
+
+		var step = steps.selectAll(".step")
+			.data(this.logs)
+			.enter().append("g")
+			.attr("class", "step");
+
+		step.append("rect")
+			.attr("class", "step-area")
+			.attr("x", (d, i) => this.x(i))
+			.attr("y", -1)
+			.attr("width", this.stepWidth)
+			.attr("height", this.$el.height() + 2);
+
+      this.svg.on("mousemove", () => {
+			var x = Math.floor(this.x.invert(d3.mouse(this.svg.node())[0]));
+			//console.log(x, $("g.step", this.$el).filter(":eq(" + Math.floor(x) + ")"));
+			step.classed("active", (d, i) => i === x);
+		});
+		this.svg.on("mouseout", () => {
+			step.classed("active", false);
+		});
+
+		step.append("circle")
+			.attr("class", "point")
+			.attr("cx", (d, i) => { console.log(d); return 1; })
+			.attr("cy", d => 1)
 			.attr("r", 5)
-			.attr("fill", d => baseColor.darker(colorDelta * parseInt(d.name)));
+			.attr("fill", d => baseColor.darker(colorDelta * 1));
+	}
+
+	_setStepPoints() {
+
 	}
 
 	_getItemData(logs: number[][]) {
@@ -380,6 +415,7 @@ class D3Display implements Display {
 				data[num].positions.push(i);
 			});
 		});
+		_.each(data, d => d.positions.push(d.positions[d.positions.length - 1]));
 		return data;
 	}
 }
