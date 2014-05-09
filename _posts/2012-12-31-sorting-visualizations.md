@@ -2,7 +2,7 @@
 layout: post
 title: Sorting Visualizations
 description: "An SVG visualization of several sorting algorithms."
-modified: 2013-12-15
+modified: 2014-05-9
 category: articles
 tags: [projects]
 comments: true 
