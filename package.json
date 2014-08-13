@@ -1,48 +1,44 @@
 {
-  "name": "frank-hadder",
- "description": "The personal website of frank hadder.",
-  "version": "0.1.0",
-  "homepage": "https://github.com/luckyllama/frank-hadder",
-  "author": {
-    "name": "f_hadder",
-    "url": "http://github.com/luckyllama/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/luckyllama/frank-hadder.git"
-  },
-  "bugs": {
-    "url": "https://github.com/luckyllama/frank-hadder/issues"
-  },
-  "engines": {
-    "node": ">=0.10"
-  },
-  "scripts": {
-    "test": "grunt assemble"
-  },
-  "devDependencies": {
-    "assemble": "~0.4.41",
-    "grunt": "~0.4.4",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-connect": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "load-grunt-tasks": "~0.6.0",
-    "time-grunt": "~0.3.2",
-    "assemble-contrib-permalinks": "*",
-    "assemble-contrib-sitemap": "*"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/luckyllama/frank-hadder/blob/master/LICENSE-MIT"
-    }
-  ],
-  "keywords": [
-    "assemble",
-    "templates",
-    "handlebars",
-    "site generator",
-    "site builder",
-    "grunt"
-  ]
+	"name": "luckyllama.github.io",
+	"description": "The personal website of frank hadder.",
+    "version": "0.1.0",
+    "homepage": "https://github.com/luckyllama/luckyllama.github.io",
+    "author": {
+    	"name": "frank hadder",
+    	"url": "https://github.com/luckyllama"
+    },
+    "repository": {
+    	"type": "git",
+    	"url": "git://github.com/luckyllama/luckyllama.github.io.git"
+    },
+    "bugs": {
+    	"url": "https://github.com/luckyllama/luckyllama.github.io/issues"
+    },
+    "engines": {
+    	"node": ">=0.10"
+    },
+    "scripts": {
+    	"test": "grunt assemble"
+    },
+    "devDependencies": {
+        "assemble": "~0.4.41",
+        "grunt": "~0.4.4",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-connect": "~0.8.0",
+        "grunt-contrib-watch": "~0.6.1",
+        "grunt-contrib-less": "^0.11.3",
+        "grunt-autoprefixer": "^0.8.1",
+        "grunt-notify": "^0.3.0",
+        "grunt-sync": "0.0.7",
+        "grunt-contrib-copy": "^0.5.0",
+        "grunt-webfont": "^0.4.3",
+        "load-grunt-tasks": "~0.6.0",
+        "time-grunt": "~0.3.2",
+        "assemble-contrib-permalinks": "*",
+        "assemble-contrib-sitemap": "*"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/luckyllama/luckyllama.github.io/blob/master/LICENSE-MIT"
+    }]
 }
