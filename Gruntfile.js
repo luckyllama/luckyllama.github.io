@@ -23,6 +23,7 @@ module.exports = function(grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
+        articles : grunt.file.readJSON("src/data/articles.json"),
 
 		config: {
 			src: "src",
@@ -31,19 +32,8 @@ module.exports = function(grunt) {
 
 		watch: {
 			assemble: {
-				files: ["<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}"],
+                files: ["<%= config.src %>/{content,data,templates}/**/*.{md,hbs,yml}"],
 				tasks: ["assemble"]
-			},
-			livereload: {
-				options: {
-					livereload: "<%= connect.options.livereload %>"
-				},
-				files: [
-                    "<%= config.dest %>/{,*/}*.html",
-                    "<%= config.dest %>/assets/{,*/}*.css",
-                    "<%= config.dest %>/assets/{,*/}*.js",
-                    "<%= config.dest %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
-				]
 			},
 			styles: {
 				files: ["<%= config.src %>/assets/css/**/*.less"],
@@ -110,19 +100,45 @@ module.exports = function(grunt) {
 		},
 
 		assemble: {
-			pages: {
-				options: {
-					flatten: true,
-					assets: "<%= config.dest %>/assets",
-					layout: "<%= config.src %>/templates/layouts/default.hbs",
-					data: "<%= config.src %>/data/*.{json,yml}",
-					partials: "<%= config.src %>/templates/partials/*.hbs",
-					plugins: ["assemble-contrib-permalinks", "assemble-contrib-sitemap"],
-				},
-				files: {
-					"<%= config.dest %>/": ["<%= config.src %>/templates/pages/*.hbs"]
-				}
-			}
+            options: {
+                flatten: true,
+                assets: "<%= config.dest %>/assets",
+                layoutext: ".hbs",
+                layoutdir: "<%= config.src %>/templates/layouts/",
+                data: "<%= config.src %>/data/*.{json,yml}",
+                partials: "<%= config.src %>/templates/partials/*.hbs",
+                plugins: ["assemble-contrib-permalinks", "assemble-contrib-sitemap"],
+                sitemap: {
+                    dest: "<%= config.dest %>",
+                },
+                collections: [{
+                    name: "articles",
+                    sortby: "date",
+                    sortorder: "descending"
+                }]
+            },
+            // articles: {
+            //     options: {
+            //         //pages: "<%= articles.list %>",
+            //         layout: "default",
+            //         permalinks: {
+            //             structure: ":year/:month/:basename/index.html"
+            //         },
+            //     },
+            //     src: ["<%= config.src %>/content/articles/*.hbs"],
+            //     dest: "<%= config.dest %>/articles/"
+            // },
+            site: {
+                options: {
+                    layout: "default",
+                    permalinks: {
+                        structure: ":category/:basename/index.html"
+                    },
+                },
+                src: ["<%= config.src %>/templates/pages/*.hbs","<%= config.src %>/content/**/*.hbs"],
+                dest: "<%= config.dest %>/"
+
+            }
 		},
 
 		// Before generating any new files,
