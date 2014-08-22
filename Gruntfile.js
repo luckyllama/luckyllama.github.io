@@ -59,6 +59,10 @@ module.exports = function(grunt) {
 			typescript: {
 				files: ["<%= config.src %>/assets/js/**/*.ts"],
 				tasks: ["ts"]
+			},
+			coffee: {
+				files: ["<%= config.src %>/assets/js/**/*.coffee"],
+				tasks: ["coffee"]
 			}
 		},
 
@@ -104,6 +108,18 @@ module.exports = function(grunt) {
 					comments: true,
 				}
 			}
+		},
+		coffee: {
+			development: {
+				options: {
+					sourceMap: true,
+				},
+				expand: true,
+				cwd: "<%= config.src %>/assets/js/",
+				src: "**/*.coffee",
+				dest: "<%= config.dest %>/assets/js/",
+				ext: ".js"
+			},
 		},
 
 		sync: {
@@ -195,5 +211,11 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask("default", ["watch"]);
-	grunt.registerTask("build", ["clean", "less", "autoprefixer", "uglify", "assemble", "sync:build"])
+	grunt.registerTask("build", [
+		"clean",
+		"less", "autoprefixer",
+		"uglify", "ts", "coffee",
+		"assemble",
+		"sync:build"
+	])
 };

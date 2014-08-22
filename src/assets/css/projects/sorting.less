@@ -1,0 +1,67 @@
+// sorting page
+// --------------------------------------------------
+.sorting {
+	float: left;
+	width: 83.33333%;
+	margin: 1rem 8.33333%;
+
+	.controls {
+		label {
+			display: inline-block;
+			padding: 0 20px 20px 0;
+		}
+	}
+    .visual {
+        height: 300px;
+        border: solid 1px #999;
+        padding: 5px;
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+		.item {
+			fill: none;
+			stroke-width: 4px;
+		}
+		rect.step-area {
+			fill: none;
+			stroke-width: 1px;
+			stroke: #F4F4F4;
+		}
+		.active rect.step-area {
+			fill: #F4F4F4;
+		}
+	}
+    .facts {
+        overflow: auto;
+        width: 100%;
+        margin-bottom: 10px;
+
+        .x-axis {
+            display: inline-block;
+            width: 20%;
+            font-size: .8em;
+        }
+        .total-steps {
+            float: left;
+        }
+        .current-array {
+            float: right;
+        }
+    }
+}
+
+@media only screen and (min-width: 37.5em) {
+	.sorting {
+		margin: 1rem 4.16667%;
+		width: 70.83333%;
+	}
+}
+@media only screen and (min-width: 86.375em) {
+	.sorting {
+		width: 54.166667%;
+		margin-left: 16.66667%;
+	}
+}

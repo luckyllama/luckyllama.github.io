@@ -25,17 +25,17 @@
 			@$mask = $("<div>").addClass("mask")
 			@$el.append(@$mask)
 			@$forward = $("<span>").text("play").append(
-				$("<i>").addClass("icon icon-double-angle-right")
+				$("<i>").addClass("fa fa-angle-double-right")
 			)
-			@$backward = $("<span>").addClass("icon icon-double-angle-left")
+			@$backward = $("<span>").addClass("fa fa-angle-double-left")
 			@$hideMask = $("<span>").addClass("show-base").text("hide mask").prepend(
-				$("<i>").addClass("icon icon-square")
+				$("<i>").addClass("fa fa-square")
 			)
 			@$showHalfMask = $("<span>").addClass("show-base half").text("hide half mask").prepend(
-				$("<i>").addClass("icon icon-columns")
+				$("<i>").addClass("fa fa-columns")
 			)
 			@$dragHint = $("<div>").addClass("drag-hint").text("drag to animate").prepend(
-				$("<i>").addClass("icon icon-arrow-h")
+				$("<i>").addClass("fa fa-arrow-h")
 			)
 			$("<div>").addClass("controls")
 				.append(
@@ -50,19 +50,19 @@
 				)
 				.append(@$dragHint)
 				.appendTo(@$el)
-		
+
 		addEvents: () ->
-			@$forward.on "click", () => 
+			@$forward.on "click", () =>
 				@$mask.show().removeClass(@backwardClass).toggleClass(@forwardClass)
 				@$forward.toggleClass("active", @$mask.is(".forward"))
 				@$backward.toggleClass("active", @$mask.is(".backward"))
 
-			@$backward.on "click", () => 
+			@$backward.on "click", () =>
 				@$mask.show().removeClass(@forwardClass).toggleClass(@backwardClass)
 				@$forward.toggleClass("active", @$mask.is(".forward"))
 				@$backward.toggleClass("active", @$mask.is(".backward"))
 
-			@$hideMask.on "click", () => 
+			@$hideMask.on "click", () =>
 				@$hideMask.toggleClass("active")
 				@$mask.toggle(@$hideMask.is(".active"))
 
@@ -77,11 +77,11 @@
 				@$mask.on "mousemove", (e) =>
 					e.preventDefault()
 					currentX = parseInt @$mask.css("background-position-x")
-					deltaX = Math.max(Math.min(x - e.pageX, 1), -1) 
+					deltaX = Math.max(Math.min(x - e.pageX, 1), -1)
 					@$mask.css("background-position-x", "#{currentX - deltaX}px")
 					x = e.pageX
 
-			$(document).on "mouseup", () => 
+			$(document).on "mouseup", () =>
 				@$mask.off("mousemove")
 				@$dragHint.removeClass("hide")
 
@@ -112,7 +112,7 @@
 			@$mask.css("background-image", "url(#{@canvas.toDataURL()})")
 
 	$(window).on("load", ->
-		$(".barrier-grid").each((index, el) -> 
+		$(".barrier-grid").each((index, el) ->
 			new Illusion($(el))
 		)
 	)

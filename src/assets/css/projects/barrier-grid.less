@@ -1,0 +1,89 @@
+// stripe illusion page
+// --------------------------------------------------
+
+.barrier-grid {
+	height: 500px;
+	position: relative;
+	margin-bottom: 60px;
+
+	.images {
+		position: relative;
+		top: 0;
+		left: 0;
+		.source-image {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+	.mask {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+
+		&.forward {
+			animation: forward 50s infinite linear;
+		}
+		&.backward {
+			animation: forward 50s infinite reverse linear;
+		}
+		&.slow {
+			animation-duration: 100s;
+		}
+		&.half { width: 50%; }
+
+		@-webkit-keyframes forward {
+			from { background-position: 0%; }
+			to { background-position: 100%; }
+		}
+		@keyframes forward {
+			from { background-position: 0%; }
+			to { background-position: 100%; }
+		}
+	}
+	.controls {
+		position: absolute;
+		bottom: -60px;
+		width: 100%;
+		padding: 18px 0;
+
+		.automate {
+			float: left;
+		}
+		.show-base {
+			float: right;
+			width: auto;
+		}
+		.drag-hint {
+			color: #fff;
+			background-color: #000;
+			position: absolute;
+			bottom: 60px;
+			width: 100%;
+			text-align: center;
+			padding: 5px 0;
+			opacity: 0.9;
+			transition: opacity .5s;
+
+			&.hide {
+				opacity: 0;
+			}
+		}
+
+		.active, span:hover {
+			color: @accent-color-active;
+		}
+
+		span {
+			cursor: pointer;
+		}
+
+		.fa {
+			padding: 0 5px;
+			transition: none;
+		}
+	}
+}

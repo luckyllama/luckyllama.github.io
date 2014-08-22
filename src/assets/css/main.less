@@ -1,5 +1,8 @@
 @import (inline) "vendor/github.css";
 @import (inline) "vendor/minimal-mistakes.css";
+@import "vars";
+@import "projects/sorting";
+@import "projects/barrier-grid";
 
 #main article table {
 	width:100%;
@@ -8,9 +11,9 @@
 }
 
 a {
-	color: #ff2b57;
-	&:visited { color: #ff1646; }
-	&:hover { color: #c40029; }
+	color: @accent-color;
+	&:visited { color: @accent-color-lighter; }
+	&:hover { color: @accent-color-active; }
 	h1 &, &.author-social, .navigation-wrapper & {
 		color: #343434;
 		&:visited { color: #343434; }
