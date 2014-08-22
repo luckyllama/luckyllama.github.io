@@ -7,7 +7,7 @@ title: Blog
 <ul class="articles">
 {{#withSort article 'data.date'}} {{#each this.pages }}
 	<li>
-		<a href="{{relative ../../page.dest this.dest}}">{{ data.title }}</a>
+		<a href="/{{articleUrl this.dest }}">{{ data.title }}</a>
 	</li>
 {{/each}} {{/withSort}}
 </ul>

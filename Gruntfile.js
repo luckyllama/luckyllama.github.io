@@ -163,6 +163,7 @@ module.exports = function(grunt) {
                layoutdir: "<%= config.src %>/templates/layouts/",
                data: "<%= config.src %>/data/*.{json,yml}",
                partials: "<%= config.src %>/templates/partials/*.hbs",
+					helpers: "<%= config.src %>/templates/helpers/*.js",
                plugins: ["assemble-contrib-permalinks", "assemble-contrib-sitemap", "assemble-middleware-rss"],
                sitemap: {
                	dest: "<%= config.dest %>",
