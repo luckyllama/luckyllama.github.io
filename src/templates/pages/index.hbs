@@ -3,8 +3,16 @@ title: Home
 heading: 'Yo, Assemble!'
 lead: Welcome to my blog!
 ---
-<div class="jumbotron">
-  <h1>{{ heading }}</h1>
-  <p>This is a Assemble Generator template using <a href="http://getbootstrap.com">Bootstrap</a>. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-  <p><a href="blog.html" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
-</div>
+
+<ul class="articles">
+{{#withSort article 'data.date'}} {{#each this.pages}}
+   {{#is data.featured true}}
+   <li>
+      <a href="{{relative ../../page.dest this.dest}}">{{ data.title }}</a>
+   </li>
+   {{/is}}
+{{/each}} {{/withSort}}
+   <li>
+      <a href="/articles/">View All</a>
+   </li>
+</ul>

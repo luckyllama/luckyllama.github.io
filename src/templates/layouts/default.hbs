@@ -1,39 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title}} | {{site.title}}</title>
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>{{title}} | {{site.title}}</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">
+   {{#if page.description }}<meta name="description" content="{{ page.description }}">{{/if}}
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap theme -->
-    <link href="{{assets}}/css/bootstrap-theme.min.css" rel="stylesheet">
+   {{> social-head }}
 
-    <!-- Custom styles for this template -->
-    <link href="{{assets}}/css/theme.css" rel="stylesheet">
+   {{#if site.owner.google.verify }}<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{{/if}}
+   {{#if site.owner.bing-verify }}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{{/if}}
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+   <link rel="stylesheet" href="{{ assets }}/css/main.css">
+   <!-- HTML5 Shiv and Media Query Support -->
+   <!--[if lt IE 9]>
+   <script src="{{ assets }}/js/vendor/html5shiv.min.js"></script>
+   <![endif]-->
+   <script src="{{ assets }}/js/vendor/modernizr-2.7.1.custom.min.js"></script>
 
-    {{> navbar-fixed-top }}
+   <link rel="shortcut icon" href="{{ assets }}/images/favicon.ico">
+   <link rel="apple-touch-icon-precomposed" href="{{assets}}/images/apple-touch-icon-precomposed.png">
+</head>
 
-    <div class="container theme-showcase" role="main">
+<body>
+   {{> navigation }}
 
-      {{> body }}
+   {{> hero }}
 
-    </div>
+   {{> body }}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{assets}}/js/bootstrap.min.js"></script>
-  </body>
+   <div class="footer-wrap">
+      <footer>
+         <span>&copy; {{ now "%Y" }} {{ site.owner.name }}.
+            Powered by <a href="http://assemble.io/">Assemble</a> using a modified <a href="http://mademistakes.com/minimal-mistakes/">Minimal Mistakes</a> theme.</span>
+      </footer>
+   </div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="{{ assets }}/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+
+   <script src="{{ assets }}/js/global.js"></script>
+   {{#scripts}}
+      <script src="{{.}}"></script>
+   {{/scripts}}
+
+   {{> google-analytics }}
+   {{> disqus }}
+
+</body>
+
 </html>

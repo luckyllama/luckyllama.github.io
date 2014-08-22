@@ -1,1 +1,30 @@
-title: Frank hadder
+title: frank hadder
+locale: en_US
+url: http://frankhadder.com
+
+# Site owner
+owner:
+  name: frank hadder
+  avatar: https://s.gravatar.com/avatar/66c9ff85009c90f497921783acce4b41?s=200
+  bio:
+  email: true #encrypted in author-bio.hbs
+  disqus-shortname: luckyllama
+  twitter: luckyllamas
+  facebook: #username
+  google:
+    plus: frankhadderrocks
+    analytics: UA-941162-5
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:
+  github: luckyllama
+  stackoverflow: 3617/frank-hadder
+  linkedin: #username
+  instagram: luckyllama
+  lastfm: luckyllama
+  tumblr: luckyllama
+  pinterest: #username
+  foursquare: #username
+  steam: #username
+  dribbble: #username

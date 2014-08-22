@@ -1,0 +1,15 @@
+---
+title: Blog
+---
+
+<h1>Posts</h1>
+
+<ul class="articles">
+{{#withSort article 'data.date'}} {{#each this.pages }}
+	<li>
+		<a href="{{relative ../../page.dest this.dest}}">{{ data.title }}</a>
+	</li>
+{{/each}} {{/withSort}}
+</ul>
+
+{{> author-bio}}

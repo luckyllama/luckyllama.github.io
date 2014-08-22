@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
-        articles : grunt.file.readJSON("src/data/articles.json"),
+        site: grunt.file.readYAML("src/data/site.yml"),
 
 		config: {
 			src: "src",
@@ -32,20 +32,34 @@ module.exports = function(grunt) {
 
 		watch: {
 			assemble: {
-                files: ["<%= config.src %>/{content,data,templates}/**/*.{md,hbs,yml}"],
+				files: ["<%= config.src %>/{content,data,templates}/**/*.{md,hbs,yml}"],
 				tasks: ["assemble"]
 			},
 			styles: {
 				files: ["<%= config.src %>/assets/css/**/*.less"],
-				tasks: ["less", "autoprefixer"],
+				tasks: ["less:development", "autoprefixer"],
 				options: {
 					nospawn: true
 				}
 			},
 			otherAssets: {
-				files: ["assets/**/*.{js,css}"],
+				files: [
+					"<%= config.src %>/assets/**/*.css",
+					"<%= config.src %>/assets/**/*.js",
+					"!<%= config.src %>/assets/js/global/*.js",
+					"<%= config.src %>/assets/images/**/*",
+					"<%= config.src %>/assets/fonts/**/*"
+             ],
 				tasks: ["sync:build"]
 			},
+			uglify: {
+				files: ["<%= config.src %>/assets/js/global/*.js"],
+				tasks: ["uglify"]
+			},
+			typescript: {
+				files: ["<%= config.src %>/assets/js/**/*.ts"],
+				tasks: ["ts"]
+			}
 		},
 
 		less: {
@@ -72,10 +86,36 @@ module.exports = function(grunt) {
 			},
 		},
 
+		uglify: {
+			development: {
+				files: {
+					"<%= config.dest %>/assets/js/global.js": "<%= config.src %>/assets/js/global/*.js"
+				},
+				options: {
+					preserveComments: false
+				}
+			}
+		},
+		ts: {
+			development: {
+				src: ["<%= config.src %>/assets/js/**/*.ts"],
+				outDir: "<%= config.dest %>/assets/js/",
+				options: {
+					comments: true,
+				}
+			}
+		},
+
 		sync: {
 			build: {
 				files: [{
-					src: ["<%= config.src %>/assets/**/*.{css,js}"],
+                    cwd: "<%= config.src %>",
+					src: [
+                        "assets/**/*.{js,css}",
+                        "!assets/js/global/*",
+                        "assets/images/**/*",
+                        "assets/fonts/**/*"
+                    ],
 					dest: "<%= config.dest %>",
 				}],
 				verbose: true
@@ -101,52 +141,59 @@ module.exports = function(grunt) {
 
 		assemble: {
             options: {
-                flatten: true,
-                assets: "<%= config.dest %>/assets",
-                layoutext: ".hbs",
-                layoutdir: "<%= config.src %>/templates/layouts/",
-                data: "<%= config.src %>/data/*.{json,yml}",
-                partials: "<%= config.src %>/templates/partials/*.hbs",
-                plugins: ["assemble-contrib-permalinks", "assemble-contrib-sitemap"],
-                sitemap: {
-                    dest: "<%= config.dest %>",
-                },
-                collections: [{
-                    name: "articles",
-                    sortby: "date",
-                    sortorder: "descending"
-                }]
+               flatten: true,
+               assets: "<%= config.dest %>/assets",
+               layoutext: ".hbs",
+               layoutdir: "<%= config.src %>/templates/layouts/",
+               data: "<%= config.src %>/data/*.{json,yml}",
+               partials: "<%= config.src %>/templates/partials/*.hbs",
+               plugins: ["assemble-contrib-permalinks", "assemble-contrib-sitemap", "assemble-middleware-rss"],
+               sitemap: {
+               	dest: "<%= config.dest %>",
+               },
+               rss: {
+                  title: "<%= site.title %>",
+                  description: "RSS feed description.",
+                  format: true
+               },
+               collections: [{
+                  name: "article",
+                  sortby: "date",
+                  sortorder: "descending"
+               }],
+					marked: {
+						highlight: function (code) {
+							return require("highlight.js").highlightAuto(code).value;
+						}
+					}
             },
-            // articles: {
-            //     options: {
-            //         //pages: "<%= articles.list %>",
-            //         layout: "default",
-            //         permalinks: {
-            //             structure: ":year/:month/:basename/index.html"
-            //         },
-            //     },
-            //     src: ["<%= config.src %>/content/articles/*.hbs"],
-            //     dest: "<%= config.dest %>/articles/"
-            // },
             site: {
                 options: {
                     layout: "default",
                     permalinks: {
-                        structure: ":category/:basename/index.html"
+                        structure: ":basename/index.html"
                     },
                 },
-                src: ["<%= config.src %>/templates/pages/*.hbs","<%= config.src %>/content/**/*.hbs"],
-                dest: "<%= config.dest %>/"
-
+                files: [{
+                    cwd: "<%= config.src %>/templates/pages/",
+                    dest: "<%= config.dest %>/",
+                    expand: true,
+                    src: "**/*.hbs"
+                }, {
+                    cwd: "<%= config.src %>/content/",
+                    dest: "<%= config.dest %>",
+                    expand: true,
+                    src: "**/*.hbs"
+                }]
             }
 		},
 
 		// Before generating any new files,
 		// remove any previously-created files.
-		clean: ["<%= config.dest %>/**/*.{html,xml}"]
+		clean: ["<%= config.dest %>/**/*"]
 
 	});
 
 	grunt.registerTask("default", ["watch"]);
-	grunt.registerTask("build", ["clean", "less", "autoprefixer", "assemble", "sync:build"])
+	grunt.registerTask("build", ["clean", "less", "autoprefixer", "uglify", "assemble", "sync:build"])
 };

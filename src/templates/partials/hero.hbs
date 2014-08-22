@@ -1,0 +1,20 @@
+{{#if page.image.feature }}
+  <div class="image-wrap">
+  <img src=
+    {{#contains page.image.feature "http" }}
+      "{{ page.image.feature }}"
+    {{ else }}
+      "{{ assets }}/images/{{ page.image.feature }}"
+    {{/contains}}
+  alt="{{ page.title }} feature image">
+  {{#if page.image.credit }}
+    <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
+  {{/if}}
+  </div>
+{{/if}}
+
+{{#if page.extra}}
+   {{#each page.extra}}
+   <div class="{{.}}"></div>
+   {{/each}}
+{{/if}}

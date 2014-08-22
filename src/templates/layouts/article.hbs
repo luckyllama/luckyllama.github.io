@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<div id="main" role="main" class="article-layout">
+	{{> author-bio}}
+	<article>
+		<div class="headline-wrap">
+			{{#if page.link }}
+			<h1><a href="{{ page.link }}">{{ page.title }}</a></h1>
+			{{ else }}
+			<h1>{{ page.title }}</h1>
+			{{/if}}
+		</div>
+
+		<div class="article-wrap">
+			{{> body }}
+			<hr />
+			<footer role="contentinfo">
+				<div class="article-author-bottom">
+					{{> author-bio}}
+				</div>
+				<p class="byline"><strong>{{ page.title }}</strong> was published on
+					<time datetime="{{formatDate page.date "%Y-%m-%d"}}">{{formatDate page.date "%B %d, %Y"}}</time>
+					{{#if page.modified }} and last modified on
+					<time datetime="{{formatDate page.modified "%Y-%m-%d"}}">{{formatDate page.modified "%B %d, %Y"}}</time>
+					{{/if}}.
+				</p>
+			</footer>
+		</div>
+
+		{{#and site.owner.disqus-shortname page.comments }}
+		<section id="disqus_thread"></section>
+		{{/and}}
+	</article>
+</div>

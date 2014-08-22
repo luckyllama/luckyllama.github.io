@@ -1,4 +1,29 @@
-.test {
-	display: block;
-	transition: all 2s;
+@import (inline) "vendor/github.css";
+@import (inline) "vendor/minimal-mistakes.css";
+
+#main article table {
+	width:100%;
+	margin: 1.625rem 0;
+	table-layout: fixed;
+}
+
+a {
+	color: #ff2b57;
+	&:visited { color: #ff1646; }
+	&:hover { color: #c40029; }
+	h1 &, &.author-social, .navigation-wrapper & {
+		color: #343434;
+		&:visited { color: #343434; }
+		&:hover { color: #1a1a1a; text-decoration: underline; }
+	}
+}
+figure { margin: 0 0 1.625rem; }
+iframe { border: none; }
+
+.author-social {
+	&:hover {
+		transform: none;
+		text-decoration: underline;
+	}
+	.fa { margin-right: 8px; }
 }
