@@ -28,10 +28,10 @@
 				$("<i>").addClass("fa fa-angle-double-right")
 			)
 			@$backward = $("<span>").addClass("fa fa-angle-double-left")
-			@$hideMask = $("<span>").addClass("show-base").text("hide mask").prepend(
+			@$hideMaskButton = $("<span>").addClass("show-base").text("hide mask").prepend(
 				$("<i>").addClass("fa fa-square")
 			)
-			@$showHalfMask = $("<span>").addClass("show-base half").text("hide half mask").prepend(
+			@$halfMaskButton = $("<span>").addClass("show-base half").text("hide half mask").prepend(
 				$("<i>").addClass("fa fa-columns")
 			)
 			@$dragHint = $("<div>").addClass("drag-hint").text("drag to animate").prepend(
@@ -45,8 +45,8 @@
 				)
 				.append(
 					$("<div>").addClass("mask-controls")
-						.append(@$hideMask)
-						.append(@$showHalfMask)
+						.append(@$hideMaskButton)
+						.append(@$halfMaskButton)
 				)
 				.append(@$dragHint)
 				.appendTo(@$el)
@@ -62,13 +62,17 @@
 				@$forward.toggleClass("active", @$mask.is(".forward"))
 				@$backward.toggleClass("active", @$mask.is(".backward"))
 
-			@$hideMask.on "click", () =>
-				@$hideMask.toggleClass("active")
-				@$mask.toggle(@$hideMask.is(".active"))
+			@$hideMaskButton.on "click", () =>
+				@$hideMaskButton.toggleClass("active")
+				@$halfMaskButton.removeClass("active")
+				@$mask.toggle(!@$hideMaskButton.is(".active"))
+				@$mask.toggleClass("half", @$halfMaskButton.is(".active"))
 
-			@$showHalfMask.on "click", () =>
-				@$showHalfMask.toggleClass("active")
-				@$mask.toggleClass("half", @$showHalfMask.is(".active"))
+			@$halfMaskButton.on "click", () =>
+				@$halfMaskButton.toggleClass("active")
+				@$hideMaskButton.removeClass("active")
+				@$mask.toggle(!@$hideMaskButton.is(".active"))
+				@$mask.toggleClass("half", @$halfMaskButton.is(".active"))
 
 			@$mask.on "mousedown", (e) =>
 				x = e.pageX
