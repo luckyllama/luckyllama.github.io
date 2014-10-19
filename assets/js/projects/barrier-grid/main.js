@@ -8,9 +8,11 @@
         this.$el = $el;
         this.canvas = document.createElement("canvas");
         this.context = this.canvas.getContext("2d");
-        width = 2;
+        width = this.$el.data("width") || 2;
         this.$images = $(".source-image", this.$el);
         count = this.$images.length;
+        this.forwardClass = "forward " + (this.$el.data("playModifier") || '');
+        this.backwardClass = "backward " + (this.$el.data("playModifier") || '');
         this.addHtml();
         this.addEvents();
         this.$images.each(function(index, img) {
@@ -34,12 +36,12 @@
       Illusion.prototype.addEvents = function() {
         var _this = this;
         this.$forward.on("click", function() {
-          _this.$mask.show().removeClass("backward").toggleClass("forward");
+          _this.$mask.show().removeClass(_this.backwardClass).toggleClass(_this.forwardClass);
           _this.$forward.toggleClass("active", _this.$mask.is(".forward"));
           return _this.$backward.toggleClass("active", _this.$mask.is(".backward"));
         });
         this.$backward.on("click", function() {
-          _this.$mask.show().removeClass("forward").toggleClass("backward");
+          _this.$mask.show().removeClass(_this.forwardClass).toggleClass(_this.backwardClass);
           _this.$forward.toggleClass("active", _this.$mask.is(".forward"));
           return _this.$backward.toggleClass("active", _this.$mask.is(".backward"));
         });
@@ -102,8 +104,10 @@
       return Illusion;
 
     })();
-    return $(".barrier-grid").each(function(index, el) {
-      return new Illusion($(el));
+    return $(window).on("load", function() {
+      return $(".barrier-grid").each(function(index, el) {
+        return new Illusion($(el));
+      });
     });
   })(jQuery);
 
