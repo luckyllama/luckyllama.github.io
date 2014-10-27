@@ -4,15 +4,19 @@ heading: 'Yo, Assemble!'
 lead: Welcome to my blog!
 ---
 
-<ul class="articles">
-{{#withSort article 'data.date'}} {{#each this.pages}}
-   {{#is data.featured true}}
-   <li>
-      <a href="{{relative ../../page.dest this.dest}}">{{ data.title }}</a>
-   </li>
-   {{/is}}
-{{/each}} {{/withSort}}
-   <li>
-      <a href="/articles/">View All</a>
-   </li>
-</ul>
+<div id="main" role="main" class="home">
+    {{> author-bio}}
+
+    <div id="index">
+        <h3><a href="/articles/">Recent Posts</a></h3>
+
+        {{#withSort article 'data.date'}} {{#each this.pages}}
+           {{#is data.featured true}}
+
+           <article>
+               <h2><a href="{{relative ../../page.dest this.dest}}" title="{{ data.title }}">{{ data.title }}</a></h2>
+               <p>{{ data.summary }}</p>
+           </article>
+           {{/is}}
+        {{/each}} {{/withSort}}
+</div>
