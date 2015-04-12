@@ -1,0 +1,21 @@
+
+{% if page.image.feature %}
+   <div class="hero">
+      <img src=
+         {% if page.image.feature.includes("http") %}
+         "{{ page.image.feature }}"{% else %}"/assets/images/{{ page.image.feature }}"
+         {% endif %} alt="{{ page.title }} feature image">
+
+      {% if page.image.credit %}
+         <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
+      {% endif %}
+   </div>
+{% else %}
+   <div class="no-hero"><div></div></div>
+{% endif %}
+
+{% if page.extra %}
+   {% for key, val in page.extra %}
+   <div class="{{ val }}"></div>
+   {% endfor %}
+{% endif %}

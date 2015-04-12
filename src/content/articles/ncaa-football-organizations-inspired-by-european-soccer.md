@@ -1,18 +1,16 @@
 ---
-article: true
-layout: article
 title: "NCAA Football Organizations Inspired by European Soccer"
 date: 2011-08-15
 modified: 2014-08-20
-category: post
+
+category: article
 tags: [soccer, football, fun]
+
 comments: true
 ---
 
-{{#markdown}}
-
 <figure>
-	<img src="/images/football-conference-map.png">
+	<img src="/assets/images/projects/football-conference-map.png">
 	<figcaption></figcaption>
 </figure>
 
@@ -135,7 +133,7 @@ One of the biggest criticisms of the BCS currently is that the major conferences
 
 It's worth noting that these I and II divisions would only apply to football. Duke, for instance, could be a division I basketball team and a division II football team. That's if basketball chooses this system at all. It might make sense to adopt some other system or keep the current system in place.
 
-## A True Playoff (With a Meaningful Regular Season)
+<h2>A True Playoff <small>(With a Meaningful Regular Season)</small></h2>
 
 One of the complaints I have with the idea of tacking on a 8+ team playoff to our current system is I believe it would devalue the regular season. There would be little reason to schedule a difficult slew of teams because the closer you are to unbeaten, the more likely you'd be included in some kind of playoff. With this system, the regular season becomes a type of playoff.
 
@@ -158,5 +156,3 @@ The biggest critique has to be the unequal level of competition between conferen
 Another obvious critique regards relegation. It certainly allows some mobility to allow a good team to be rewarded but I'd be afraid that the bottom level teams would never spend more than one or two years in the division I before dropping back down.
 
 Of course I haven't talked about how unpopular some of this would be. Teams on the cusp (especially in the SEC like Vanderbilt or Kentucky) would get knocked down to lower division of football which would make fans very unhappy. Teams like Boise State would have a much harder time producing undefeated seasons if they had to play all the teams in the Pac 10 instead of just one or two of them. I'm sure there are hundreds of small issues and plenty of large legal and economic ones. But this is effectively just a thought exorcise and I don't really like thinking of legal and economical things. Thoughts?
-
-{{/markdown}}

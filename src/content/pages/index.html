@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% set page.title = "All Articles" %}
+{% set page.nav = "article" %}
+
+{% block content %}
+   <section class="article-list">
+      {% for article in site.articles %}
+         <article>
+            <h2><a href="{{article.url}}">{{article.title}}</a></h2>
+            {% if article.date %}<div class="posted">Posted on {{ article.date | date("F j, Y") }}</div>{% endif %}
+            <p>
+               {{ article.summary | truncate(300) | safe }}
+            </p>
+            <a href="{{article.url}}">Read more...</a>
+         </article>
+      {% endfor %}
+   </section>
+{% endblock %}

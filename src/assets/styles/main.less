@@ -1,0 +1,212 @@
+@import (inline) "vendor/github.css";
+@import (inline) "vendor/bootstrap.css";
+@import (inline) "fonts/font-awesome.css";
+@import "vars";
+@import "projects/sorting";
+@import "projects/barrier-grid";
+
+.max-size {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+}
+.standard-size {
+	width: 100%;
+	max-width: 700px;
+	margin-left: auto; margin-right: auto;
+}
+// http://www.colourlovers.com/palette/1648011/lonely_girl
+@red: #ff2d47;
+@dark-red: #a82837;
+@gray: #dedede;
+@black: #262626;
+@dark-gray: #3d3939;
+@white: #fff;
+
+.serif { font-family: "Merriweather", serif; }
+.sans-serif { font-family: "Josefin Sans", sans-serif; }
+
+body {
+	.serif;
+	color: @black;
+	font-size: 19px;
+	line-height: 1.45;
+}
+
+p { margin-bottom: 1.3em; }
+
+h1, h2, h3, h4, h5, h6 {
+	.sans-serif;
+}
+h1, h2, h3, h4 {
+  margin: 1em 0 0.1em;
+  font-weight: inherit;
+  line-height: 1.1;
+}
+
+h1 {
+	margin-top: 0;
+	font-size: 2.369em;
+}
+h2 { font-size: 1.777em; font-weight: 700; letter-spacing: .02em; }
+h3 { font-size: 1.333em; font-weight: 700; letter-spacing: .02em; }
+h4 { font-size: 1.0em; font-weight: 700; letter-spacing: .02em; }
+small { font-size: 0.75em; }
+h2 small, h3 small { font-size: 0.7em; color: @black; }
+
+body > header {
+	.sans-serif;
+	font-size: 22px;
+	padding: 1em 0;
+
+	nav {
+		.max-size;
+		text-transform: lowercase;
+		font-weight: 300;
+		overflow: hidden;
+
+		a.logo {
+			font-size: 34px;
+			letter-spacing: .08em;
+			float: left;
+			text-decoration: none;
+			&:hover { color: @red; }
+
+			span {
+				top: -0.15em;
+				position: relative;
+				color: @red;
+				font-weight: 400;
+			}
+		}
+		a {
+			color: @black;
+		}
+		ul {
+			float: right;
+			margin: 11px 0 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				display: inline-block;
+
+				a {
+					padding: 0 8px;
+					&.active,
+					&:hover { color: @red; }
+				}
+			}
+		}
+	}
+}
+
+.hero {
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+	.image-credit {
+		display: block;
+		width: 40em;
+		margin: 0 auto 1.5em;
+		text-align: right;
+		color: @gray;
+		font-style: italic;
+		a { color: @gray; }
+	}
+	margin-bottom: 1.3em;
+}
+.no-hero {
+	padding-top: 1.999em;
+	margin-bottom: 2.827em;
+	background: @dark-gray;
+	border-bottom: solid .354em @red;
+	div { background: @dark-red; height: .5em; }
+}
+
+main {
+	padding-bottom: 2.827em;
+	border-bottom: .354em solid @red;
+
+	article {
+		> * { .standard-size; }
+
+		img {
+			max-width: 100%;
+			margin: 0 auto;
+			display: block;
+		}
+		table {
+			width:100%;
+			margin: 1.625rem auto;
+			table-layout: fixed;
+		}
+		figure {
+			margin: 0 auto 1.625rem;
+			figcaption {
+				font-size: .9em;
+				font-style: italic;
+				color: @dark-gray;
+				margin-top: 0.3em;
+			}
+		}
+		iframe { border: none; }
+		ul { margin-bottom: 1.3em; }
+		hr {
+			width: 5em;
+			border-top-color: @dark-gray;
+			margin: 1.777em auto;
+		}
+		footer {
+			font-size: .9em;
+			font-style: italic;
+			color: @dark-gray;
+			overflow: hidden;
+			div { float: left; }
+			div + div { margin-left: 2em; }
+		}
+	}
+}
+
+body > footer {
+	padding: 2.827em 0;
+	background: @dark-gray;
+	color: @white;
+	border-top: .5em solid @dark-red;
+
+	.author-info {
+		.max-size;
+		overflow: hidden;
+
+		.bio-photo {
+			width: 90px;
+			margin-right: 30px;
+			float: left;
+		}
+		.links {
+			float: left;
+			width: 40em;
+			h2 { margin-top: 0; font-weight: 400; }
+		}
+		a {
+			display: inline-block;
+			margin-right: 1em;
+			color: @white;
+		}
+	}
+	small {
+		display: block;
+		.max-size;
+		text-align: right;
+		hr { border-top-color: lighten(@dark-gray, 10%); }
+	}
+}
+
+.author-social {
+	&:hover {
+		transform: none;
+		text-decoration: underline;
+	}
+	.fa { margin-right: 8px; }
+}

@@ -2,17 +2,8 @@
 component: navigation
 ---
 
-<div class="navigation-wrapper">
-	<div class="site-name">
-		<a href="/">{{ site.title }}</a>
-	</div>
-	<div class="top-navigation">
-		<nav role="navigation" id="site-nav" class="nav">
-		    <ul>
-		        {{#each navigation }}
-					    <li><a href="{{ url }}" {{#contains url "http" }}target="_blank"{{/contains}}>{{ title }}</a></li>
-				  {{/each}}
-		    </ul>
-		</nav>
-	</div>
-</div>
+<ul>
+{{#each navigation }}
+	<li role="presentation"><a href="{{ url }}" {{#contains url "http" }}target="_blank"{{/contains}}>{{ title }}</a></li>
+{{/each}}
+</ul>

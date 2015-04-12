@@ -1,0 +1,71 @@
+{
+   "build": {
+   	"src": "src/",
+   	"dest": "build/",
+      "browsers": [
+   		"ie >= 8",
+   		"ie_mob >= 10",
+   		"ff >= 25",
+   		"chrome >= 25",
+   		"safari >= 7",
+   		"opera >= 23",
+   		"ios >= 7",
+   		"android >= 4.4",
+   		"bb >= 10"
+   	],
+      "paths": {
+         "less": "src/assets/styles/main.less",
+         "styles": "src/assets/styles/**/*",
+         "images": ["src/assets/styles/images/**/*", "src/assets/images/**/*"],
+         "staticAssets": [ "src/assets/styles/fonts/*" ],
+         "articles": "src/content/articles/**/*.md",
+         "pagesHtml": "src/content/pages/*.html",
+         "pagesMarkdown": "src/content/pages/*.md",
+         
+         "templates": {
+            "base": "src/assets/templates",
+            "article": "src/assets/templates/article.html",
+            "page": "src/assets/templates/page.html"
+         }
+      },
+
+      "clean": [
+         "build/**/*"
+      ]
+
+   },
+
+   "site": {
+      "title": "frank hadder",
+      "locale": "en_US",
+      "url": "http://frankhadder.com",
+      "owner": {
+         "name": "frank hadder",
+         "avatar": "https://s.gravatar.com/avatar/66c9ff85009c90f497921783acce4b41?s=200",
+         "bio": "",
+         "email": "",
+         "disqus-shortname": "luckyllama",
+         "twitter": "luckyllamas",
+         "facebook": "#username",
+         "google": {
+            "plus": "frankhadderrocks",
+            "analytics": "UA-941162-5",
+            "verify": "",
+            "ad-client": "",
+            "ad-slot": ""
+         },
+         "bing-verify": "",
+         "github": "luckyllama",
+         "stackoverflow": "3617/frank-hadder",
+         "linkedin": "",
+         "instagram": "luckyllama",
+         "lastfm": "luckyllama",
+         "tumblr": "luckyllama",
+         "pinterest": "",
+         "foursquare": "",
+         "steam": "",
+         "dribbble": ""
+      }
+   }
+
+}

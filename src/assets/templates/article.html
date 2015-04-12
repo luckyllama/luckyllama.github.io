@@ -1,0 +1,13 @@
+{% set page.nav = "article" %}
+{% extends "base.html" %}
+
+{% block content %}
+   <article>
+      {{content|safe}}
+
+      <footer>
+         {% if page.date %}<div class="posted">Posted on {{ page.date | date("F j, Y") }}</div>{% endif %}
+         {% if page.modified %}<div class="modified">Last Modified on {{ page.modified | date("F j, Y") }}</div>{% endif %}
+      </footer>
+   </article>
+{% endblock %}

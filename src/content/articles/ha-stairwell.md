@@ -1,23 +1,22 @@
 ---
-article: true
-layout: article
 title: "Watch Your Step!"
-excerpt: "An interactive stairwell exibit done at Hornall Anderson."
+summary: "An interactive stairwell exibit done at Hornall Anderson."
 date: 2014-07-23
+
 category: articles
 tags: [ha, environmental]
+
 comments: false
 image:
   feature: stairwell/hero.png
-
-published: true
 ---
 
-{{#markdown}}
+<style>
+   .hero { background: #000; }
+   .hero img { padding: 4em 0; }
+</style>
 
 _We found ourselves with some spare hardware, a blank canvas, and an idea for an interactive art project._
-
-<br>
 
 Our office here in Seattle spans two floors and we have a stairwell—and most importantly a large wall—connecting the two. The lower floor has become our new HAX area so we thought a new HAX project would be the perfect way to transition down to that space. We wanted something large and interactive (but not so interactive that someone might trip down the stairs). We wanted something abstract and pretty. We wanted something fun and eye-catching. In the end, we couldn't settle on just one idea.
 
@@ -43,7 +42,7 @@ Next, we setup a webcam to capture activity on the stairs. We hung a [Microsoft 
 Once we collected this image data, we moved to the web. We created a dozen different visualizations which took advantage of several different [open source][lib1] [web graphics][lib2] [libraries][lib3]. A few creations didn't turn out but in the end we had 6 different visuals we liked. Instead of settling on one, we decided to use them all. The final visuals land in three camps: particle generators, grid based reveals, and classic video game homage. A particle generator reads a person's location on the stairs and creates many small images at the corresponding location in the visual. The grid based reveal visualizations have an underlying, grid-based, system that lays dormant until movement causes them to reveal themselves. Lastly, we created two video game related visuals: a Super Mario (NES) particle generator where little Marios come sprouting out of warp pipes, and a working (albeit unlosable) game of space invaders.
 
 <figure>
-	<iframe width="620" height="349" src="//player.vimeo.com/video/101571609?title=0&amp;byline=0&amp;portrait=0&amp;color=00d8fa" allowfullscreen=""></iframe>
+	<iframe width="700" height="394" src="//player.vimeo.com/video/101571609?title=0&amp;byline=0&amp;portrait=0&amp;color=00d8fa" allowfullscreen=""></iframe>
 	<figcaption>Video examples of all the visualizations. The handsome man on the right shows the raw webcam footage to which the visualizations are reacting.</figcaption>
 </figure>
 
@@ -55,5 +54,3 @@ I'm really happy with the results. A bunch of people were able to contribute to 
 [lib2]: http://processingjs.org/
 [lib3]: http://soulwire.github.io/sketch.js/
 [lib4]: https://github.com/shimat/opencvsharp
-
-{{/markdown}}

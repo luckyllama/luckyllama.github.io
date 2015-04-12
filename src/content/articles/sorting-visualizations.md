@@ -1,21 +1,20 @@
 ---
-article: true
-featured: true
-layout: article
 title: Sorting Visualizations
-description: "An SVG visualization of several sorting algorithms."
+summary: "An SVG visualization of several sorting algorithms."
 date: 2012-12-31
 modified: 2014-05-9
+featured: true
+
 category: projects
 tags: [projects]
+
 comments: true
+
 scripts:
   - /assets/js/vendor/d3.min.js
   - /assets/js/projects/sorting/sorting.js
 extra: [sorting]
 ---
-
-{{#markdown}}
 
 Inspired by [sortvis.org](http://sortvis.org), these visualizations create an interesting way to view various sorting
 algorithms at work. For instance, you can compare the calm swapping of bubblesort with the mass confusion beginning of
@@ -32,5 +31,3 @@ You can view all the typescript code on [github](https://github.com/luckyllama/l
 <br>
 _Note: SVG is an advanced browser feature. I've only tested this page in the lastest version of Chrome and Firefox, IE9,
 and Safari for iPhone 4/new iPad._
-
-{{/markdown}}
