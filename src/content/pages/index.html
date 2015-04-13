@@ -9,10 +9,11 @@
          <article>
             <h3><a href="{{article.url}}">{{article.title}}</a></h3>
             {% if article.date %}<div class="posted">Posted on {{ article.date | date("F j, Y") }}</div>{% endif %}
+            {% if article.summaryImage %}<a href="{{article.url}}"><img src="/assets/images/{{ article.summaryImage }}" /></a>{% endif %}
             <p>
                {{ article.summary | truncate(300) | safe }}
             </p>
-            <a href="{{article.url}}">Read more...</a>
+            <a class="more" href="{{article.url}}">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
          </article>
          <hr />
       {% endfor %}

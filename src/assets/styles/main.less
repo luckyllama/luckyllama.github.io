@@ -137,28 +137,36 @@ main {
 	border-bottom: .354em solid @red;
 
 	a {
+		color: @black;
 		display: inline-block;
-		box-shadow: inset 0 -.2em 0 fade(@link, 20%);
+		box-shadow: inset 0 -.2em 0 fade(@red, 20%);
 		line-height: 1.3;
 		display: inline-block;
 		transition: box-shadow .2s;
 	}
 	a:hover {
+		color: @dark-red;
 		text-decoration: none;
-		box-shadow: inset 0 -1.3em 0 fade(@link, 20%);
+		box-shadow: inset 0 -1.3em 0 fade(@red, 20%);
 	}
 	hr {
 		width: 5em;
 		border-top-color: @dark-gray;
 		margin: 1.777em auto;
 	}
+	hr:last-child { display: none; }
 
 	.article-list {
 		article {
 			.standard-size;
+			overflow: hidden;
+			h3 a { box-shadow: none; }
+			h3 a:hover { box-shadow: none; }
 			.posted { .playdown; }
+			img { display: block; margin-top: 1em; width: 100%; }
 			> * { width: auto; max-width: none; }
 			p { margin-top: 1.3em; }
+			.more { float: right; }
 		}
 	}
 

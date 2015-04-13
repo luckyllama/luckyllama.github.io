@@ -1,6 +1,7 @@
 ---
 title: "Watch Your Step!"
 summary: "An interactive stairwell exibit done at Hornall Anderson."
+summaryImage: stairwell/hero.png
 date: 2014-07-23
 
 category: articles
