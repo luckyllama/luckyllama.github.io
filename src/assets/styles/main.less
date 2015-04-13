@@ -15,6 +15,11 @@
 	max-width: 700px;
 	margin-left: auto; margin-right: auto;
 }
+.playdown {
+	font-size: .9em;
+	font-style: italic;
+	color: @dark-gray;
+}
 // http://www.colourlovers.com/palette/1648011/lonely_girl
 @red: #ff2d47;
 @dark-red: #a82837;
@@ -22,6 +27,7 @@
 @black: #262626;
 @dark-gray: #3d3939;
 @white: #fff;
+@link: #2780e3;
 
 .serif { font-family: "Merriweather", serif; }
 .sans-serif { font-family: "Josefin Sans", sans-serif; }
@@ -119,6 +125,7 @@ body > header {
 }
 .no-hero {
 	padding-top: 1.999em;
+	padding-top:2px;
 	margin-bottom: 2.827em;
 	background: @dark-gray;
 	border-bottom: solid .354em @red;
@@ -128,6 +135,32 @@ body > header {
 main {
 	padding-bottom: 2.827em;
 	border-bottom: .354em solid @red;
+
+	a {
+		display: inline-block;
+		box-shadow: inset 0 -.2em 0 fade(@link, 20%);
+		line-height: 1.3;
+		display: inline-block;
+		transition: box-shadow .2s;
+	}
+	a:hover {
+		text-decoration: none;
+		box-shadow: inset 0 -1.3em 0 fade(@link, 20%);
+	}
+	hr {
+		width: 5em;
+		border-top-color: @dark-gray;
+		margin: 1.777em auto;
+	}
+
+	.article-list {
+		article {
+			.standard-size;
+			.posted { .playdown; }
+			> * { width: auto; max-width: none; }
+			p { margin-top: 1.3em; }
+		}
+	}
 
 	article {
 		> * { .standard-size; }
@@ -145,23 +178,14 @@ main {
 		figure {
 			margin: 0 auto 1.625rem;
 			figcaption {
-				font-size: .9em;
-				font-style: italic;
-				color: @dark-gray;
+				.playdown;
 				margin-top: 0.3em;
 			}
 		}
 		iframe { border: none; }
 		ul { margin-bottom: 1.3em; }
-		hr {
-			width: 5em;
-			border-top-color: @dark-gray;
-			margin: 1.777em auto;
-		}
 		footer {
-			font-size: .9em;
-			font-style: italic;
-			color: @dark-gray;
+			.playdown;
 			overflow: hidden;
 			div { float: left; }
 			div + div { margin-left: 2em; }

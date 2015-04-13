@@ -78,6 +78,7 @@ gulp.task("articles", function () {
          })
       })())
       .pipe(applyTemplate(build.paths.templates.article))
+		.pipe($.highlight())
       .pipe($.rename({extname: ".html"}))
       .pipe(gulp.dest(build.dest));
 
