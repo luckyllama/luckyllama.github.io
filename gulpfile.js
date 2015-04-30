@@ -35,7 +35,7 @@ swig.setDefaults({
     locals: { now: function () { return new Date(); } },
     cache: false
 });
-swigExtras.useFilter(swig, "truncate")
+swigExtras.useFilter(swig, "truncate");
 
 
 var applyTemplate = function (templateFile) {
@@ -76,7 +76,7 @@ gulp.task("articles", function () {
 				});
             site.articles = articles;
             callback();
-         })
+         });
       })())
       .pipe(applyTemplate(build.paths.templates.article))
 		.pipe($.highlight())
@@ -108,7 +108,7 @@ gulp.task("pages", ["articles"], function () {
 
     return merge(html, markdown)
         .pipe(gulp.dest(build.dest));
-})
+});
 
 gulp.task("jshint", function () {
 	return gulp.src([
