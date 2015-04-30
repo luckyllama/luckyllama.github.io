@@ -1,3 +1,4 @@
+/// <reference path="typings/node/node.d.ts"/>
 "use strict";
 
 var gulp = require("gulp");
@@ -172,5 +173,5 @@ gulp.task("build", ["clean"], function () {
 
 gulp.task("deploy", ["build"], function () {
    return gulp.src(build.dest + "/**/*")
-      .pipe(deploy());
-})
+      .pipe($.deploy());
+});
