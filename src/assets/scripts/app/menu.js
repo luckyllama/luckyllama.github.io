@@ -5,5 +5,4 @@
       event.preventDefault();
       $("body").toggleClass("menu-open");
    });
-   
 })(window.jQuery);
