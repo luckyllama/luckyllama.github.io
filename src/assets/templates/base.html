@@ -15,9 +15,11 @@
    {% if site.owner.google.verify %}<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{% endif %}
    {% if site.owner.bing-verify %}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{% endif %}
 
-   <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700|Merriweather:400,400italic,700" rel="stylesheet" type="text/css">
+   <script src="//use.typekit.net/qug8qmc.js"></script>
+   <script>try{Typekit.load();}catch(e){}</script>
+
    <link rel="stylesheet" href="/assets/styles/main.css">
-   <script src="/assets/js/vendor/modernizr.custom.min.js"></script>
+   <script src="/assets/scripts/vendor/modernizr.custom.min.js"></script>
 
    <link rel="shortcut icon" href="/assets/images/favicon.ico">
    <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-precomposed.png">
@@ -26,15 +28,15 @@
 <body class="{{ page.nav }}">
 
    <header>
-      <nav>
-         <a href="/" class="logo">frank<span>.</span>hadder</a>
-
-         <ul>
-            <li role="presentation"><a {% if page.nav == "about" %}class="active"{% endif %} href="/about">about</a></li>
-            <li role="presentation"><a {% if page.nav == "article" %}class="active"{% endif %} href="/">articles</a></li>
-         </ul>
-      </nav>
+      <a href="#menu" class="menu"><span>menu</span><span class="is-open">close</span></a>
+      <a href="/" class="logo"><span>frank</span><span>hadder</span></a>
    </header>
+   <nav>
+      <ul>
+         <li role="presentation"><a {% if page.nav == "about" %}class="active"{% endif %} href="/about">about</a></li>
+         <li role="presentation"><a {% if page.nav == "article" %}class="active"{% endif %} href="/">articles</a></li>
+      </ul>
+   </nav>
 
     <main>
       {% include "includes/hero.html" %}
@@ -51,10 +53,10 @@
    </footer>
 
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-   <script src="/assets/js/vendor/lodash-2.4.1.min.js"></script>
+   <script>window.jQuery || document.write('<script src="/assets/scripts/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+   <script src="/assets/scripts/vendor/lodash-2.4.1.min.js"></script>
 
-   <script src="/assets/js/global.js"></script>
+   <script src="/assets/scripts/app.min.js"></script>
    {# {% for key, val in page.scripts %}
      <script src="{{ val }}"></script>
    {% endfor %} #}

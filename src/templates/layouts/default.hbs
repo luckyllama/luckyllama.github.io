@@ -4,31 +4,34 @@
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{title}} | {{site.title}}</title>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>{{title}} | {{site.title}}</title>
 
-    {{#if page.description }}<meta name="description" content="{{ page.description }}">{{/if}}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   {{#if page.description }}<meta name="description" content="{{ page.description }}">{{/if}}
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{> social-head }}
+   {{> social-head }}
 
-    {{#if site.owner.google.verify }}<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{{/if}}
-    {{#if site.owner.bing-verify }}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{{/if}}
+   {{#if site.owner.google.verify }}<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{{/if}}
+   {{#if site.owner.bing-verify }}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{{/if}}
+<!--
+   <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Cardo:400,400italic,700" rel="stylesheet" type="text/css"> -->
+   <script src="//use.typekit.net/qug8qmc.js"></script>
+   <script>try{Typekit.load();}catch(e){}</script>
 
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Cardo:400,400italic,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ assets }}/css/main.css">
-    <script src="{{ assets }}/js/vendor/modernizr.custom.min.js"></script>
+   <link rel="stylesheet" href="{{ assets }}/css/main.css">
+   <script src="{{ assets }}/js/vendor/modernizr.custom.min.js"></script>
 
-    <link rel="shortcut icon" href="{{ assets }}/images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="{{assets}}/images/apple-touch-icon-precomposed.png">
+   <link rel="shortcut icon" href="{{ assets }}/images/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="{{assets}}/images/apple-touch-icon-precomposed.png">
 </head>
 
 <body>
 
     <header>
+        <a href="/" class="logo"><span>frank</span> <span>hadder</span></a>
         <nav>
-            <a href="/" class="logo">frank<span>.</span>hadder</a>
             {{> navigation }}
         </nav>
     </header>

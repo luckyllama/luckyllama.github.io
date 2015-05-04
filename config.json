@@ -21,7 +21,11 @@
          "articles": "src/content/articles/**/*.md",
          "pagesHtml": "src/content/pages/*.html",
          "pagesMarkdown": "src/content/pages/*.md",
-         
+         "jsGeneral": "src/assets/scripts/app/*.js",
+         "jsGeneralDest": "assets/scripts/app.min.js",
+         "jsProject": "src/assets/scripts/projects/**/*.js",
+         "jsVendor": "src/assets/scripts/vendor/**/*.js",
+
          "templates": {
             "base": "src/assets/templates",
             "article": "src/assets/templates/article.html",

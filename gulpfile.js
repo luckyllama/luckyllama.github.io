@@ -111,30 +111,22 @@ gulp.task("pages", ["articles"], function () {
 });
 
 gulp.task("jshint", function () {
-	return gulp.src([
-			config.src + "assets/scripts/**/*.js",
-			"!" + config.src + "assets/scripts/vendor/**/*"
-		])
+	return gulp.src(build.paths.jsGeneral)
 		.pipe($.jshint())
 		.pipe($.jshint.reporter("jshint-stylish"));
 });
 gulp.task("scripts", ["jshint"], function () {
-	var js = gulp.src([
-			config.src + "assets/scripts/**/*.js",
-			"!" + config.src + "assets/scripts/**/app.*.js"
-		], settings)
-		.pipe(gulp.dest(config.dest));
+	var copy = gulp.src([build.paths.jsProject, build.paths.jsVendor], settings)
+		.pipe(gulp.dest(build.dest))
+		.pipe($.size({ title: "js::project/vendor" }));
 
-	gulp.src([
-			config.src + "assets/scripts/**/app.*.js",
-			"!" + config.src + "assets/scripts/vendor/**/*"
-		], settings)
-		.pipe($.size({title: "javascript::before"}))
-        .pipe($.plumber())
-        .pipe($.uglify())
-        .pipe($.concat("assets/scripts/app.js"))
-		.pipe(gulp.dest(config.dest))
-		.pipe($.size({title: "javascript::after"}));;
+	gulp.src(build.paths.jsGeneral, settings)
+		.pipe($.size({title: "js:general::before"}))
+		.pipe($.plumber())
+		.pipe($.uglify())
+		.pipe($.concat(build.paths.jsGeneralDest))
+		.pipe(gulp.dest(build.dest))
+		.pipe($.size({title: "js:general::after"}));;
 });
 
 gulp.task("images", function () {
@@ -154,7 +146,7 @@ gulp.task("watch", function () {
 	gulp.watch(build.paths.templates.base + "/**/*", ["articles"]);
 	gulp.watch(build.paths.articles, ["articles"]);
 	gulp.watch(build.paths.pagesHtml, ["pages"]);
-   //  gulp.watch(config.src + "assets/scripts/**/*.js", ["scripts"]);
+   gulp.watch([build.paths.jsGeneral, build.paths.jsProject, build.paths.jsVendor], ["scripts"]);
 	gulp.watch([
 		build.paths.staticAssets,
 		build.paths.images
@@ -168,7 +160,7 @@ gulp.task("default", function() {
 });
 
 gulp.task("build", ["clean"], function () {
-	runSequence("styles", "static", "pages");
+	runSequence("styles", "scripts", "static", "pages");
 });
 
 gulp.task("deploy", ["build"], function () {
