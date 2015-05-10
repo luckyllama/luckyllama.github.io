@@ -177,7 +177,7 @@ gulp.task("build", ["clean"], function () {
 	runSequence("styles", "scripts", "static", "pages");
 });
 
-gulp.task("deploy", ["build"], function () {
-   return gulp.src(build.dest + "/**/*")
+gulp.task("deploy", function () {
+   return gulp.src(build.dest + "**/*")
       .pipe($.ghPages({ branch: "master" }));
 });
