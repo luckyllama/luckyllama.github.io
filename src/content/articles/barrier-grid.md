@@ -1,6 +1,7 @@
 ---
 title: Barrier-Grid Optical Illusion
-summary: "A transparent mask moved on top of a static image creates the illusion of animation in this optical illusion."
+summary: A transparent mask moved on top of a static image creates the illusion of animation in this optical illusion.
+summaryImage: projects/barrier-grid/poster.png
 date: 2014-01-13
 modified: 2014-01-14
 
@@ -10,7 +11,7 @@ featured: true
 comments: false
 
 scripts:
-  - /assets/js/projects/barrier-grid/main.js
+  - /assets/scripts/projects/barrier-grid/main.js
 ---
 
 A barrier-grid animation is an interesting real-world animation technique that's been around for decades. A special static image is created with a transparent, striped, mask layed on top of it. Sliding the mask to the left or right shows and hides animation frames destilled into the static image so that only one frame is showing at a time. Your brain fills in the rest and the image appears to move.

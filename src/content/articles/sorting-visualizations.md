@@ -1,6 +1,7 @@
 ---
 title: Sorting Visualizations
-summary: "An SVG visualization of several sorting algorithms."
+summary: An SVG visualization of several sorting algorithms.
+summaryImage: projects/sorting-poster.png
 date: 2012-12-31
 modified: 2014-05-9
 featured: true
@@ -26,7 +27,7 @@ Most algorithms were copied from either [sortvis.org](http://sortvis.org) or
 [Rosetta Code](http://rosettacode.org/wiki/Sorting_algorithms).
 
 <br>
-You can view all the typescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/dev/src/assets/js/projects/sorting/sorting.ts).
+You can view all the typescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/dev/src/assets/scripts/projects/sorting/sorting.ts).
 
 <br>
 _Note: SVG is an advanced browser feature. I've only tested this page in the lastest version of Chrome and Firefox, IE9,

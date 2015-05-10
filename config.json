@@ -25,6 +25,7 @@
          "jsGeneralDest": "assets/scripts/app.min.js",
          "jsProject": "src/assets/scripts/projects/**/*.js",
          "tsProject": ["src/assets/scripts/projects/**/*.ts", "src/assets/scripts/vendor/**/*.ts"],
+         "coffeeProject": "src/assets/scripts/projects/**/*.coffee",
          "jsVendor": "src/assets/scripts/vendor/**/*.js",
 
          "templates": {

@@ -121,7 +121,13 @@ gulp.task("typescript", function () {
 		.pipe(gulp.dest(build.dest))
 		.pipe($.size({ title: "ts::project" }));
 });
-gulp.task("scripts", ["jshint", "typescript"], function () {
+gulp.task("coffeescript", function () {
+	return gulp.src(build.paths.coffeeProject, settings)
+		.pipe($.coffee().on('error', onError))
+		.pipe(gulp.dest(build.dest))
+		.pipe($.size({ title: "coffee::project" }));
+});
+gulp.task("scripts", ["jshint", "typescript", "coffeescript"], function () {
 	var projectJs = gulp.src([build.paths.jsProject, build.paths.jsVendor], settings)
 		.pipe($.size({ title: "js::project/vendor" }));
 
@@ -151,9 +157,10 @@ gulp.task("static", ["images"], function () {
 gulp.task("watch", function () {
 	gulp.watch(build.paths.styles, ["styles"]);
 	gulp.watch(build.paths.templates.base + "/**/*", ["articles"]);
-	gulp.watch(build.paths.articles, ["articles"]);
-	gulp.watch(build.paths.pagesHtml, ["pages"]);
+	gulp.watch([build.paths.pagesHtml, build.paths.articles], ["pages"]);
    gulp.watch([build.paths.jsGeneral, build.paths.jsProject, build.paths.jsVendor], ["scripts"]);
+	gulp.watch(build.paths.coffeeProject, ["coffeescript"]);
+	gulp.watch(build.paths.tsProject, ["typescript"]);
 	gulp.watch([
 		build.paths.staticAssets,
 		build.paths.images
