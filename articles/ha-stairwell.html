@@ -1,0 +1,170 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Watch Your Step! - frank hadder</title>
+
+   
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Twitter Cards -->
+   <meta name="twitter:title" content="Watch Your Step!">
+   
+   <meta name="twitter:site" content="@luckyllamas">
+   
+   
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:image" content="http://frankhadder.com/assets/images/stairwell/hero.png">
+   
+
+   <!-- Open Graph -->
+   <meta property="og:locale" content="en_US">
+   <meta property="og:type" content="article">
+   <meta property="og:title" content="Watch Your Step!">
+   
+   <meta property="og:url" content="http://frankhadder.comarticles/ha-stairwell.html">
+   <meta property="og:site_name" content="frank hadder">
+
+   <link rel="author" href="http://plus.google.com/+frankhadderrocks?rel=author">
+
+   
+   
+
+   <script src="//use.typekit.net/qug8qmc.js"></script>
+   <script>try{Typekit.load();}catch(e){}</script>
+
+   <link rel="stylesheet" href="/assets/styles/main.css">
+   <script src="/assets/scripts/vendor/modernizr.custom.min.js"></script>
+
+   <link rel="shortcut icon" href="/assets/images/favicon.ico">
+   <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-precomposed.png">
+</head>
+
+<body class="article">
+
+   <header>
+      <a href="#menu" class="menu"><span>menu</span><span class="is-open">close</span></a>
+      <a href="/" class="logo"><span>frank</span><span>hadder</span></a>
+   </header>
+   <nav>
+      <ul>
+         <li role="presentation"><a href="/about">about</a></li>
+         <li role="presentation"><a class="active" href="/">articles</a></li>
+      </ul>
+   </nav>
+
+    <main>
+      
+
+   <div class="hero">
+      <img src="/assets/images/stairwell/hero.png" alt="Watch Your Step! feature image">
+
+      
+   </div>
+
+
+
+
+      
+   <article>
+      <style>
+   .hero { background: #000; }
+   .hero img { padding: 4em 0; }
+</style>
+
+<p><em>We found ourselves with some spare hardware, a blank canvas, and an idea for an interactive art project.</em></p>
+<p>Our office here in Seattle spans two floors and we have a stairwell&#x2014;and most importantly a large wall&#x2014;connecting the two. The lower floor has become our new HAX area so we thought a new HAX project would be the perfect way to transition down to that space. We wanted something large and interactive (but not so interactive that someone might trip down the stairs). We wanted something abstract and pretty. We wanted something fun and eye-catching. In the end, we couldn&apos;t settle on just one idea.</p>
+<figure>
+    <img src="/assets/images/stairwell/Staircase-Projector-Diagram.png" alt="projector diagram">
+    <figcaption>The projector is mounted on the other side of a hallway that runs parallel to the stairs and projects on roughly 1+&#xBD; floors.</figcaption>
+</figure>
+
+<p>Our first challenge was to find a projector. We wanted to fill as much wall space as possible and there was quite a lot of wall with which to work. In the end, we settled on a <a href="http://www.projectorcentral.com/NEC-NP-M352WS.htm">short throw projector</a> set far enough back that our projection ended up being over 12 feet tall. At that distance, it projected far too wide for the narrow space so we blocked the sides with some foamcore to constrain the image.</p>
+<figure>
+    <img src="/assets/images/stairwell/setup.jpg" alt="hardware">
+    <figcaption>Setup: projector (top left), webcam (bottom left), and the stairwell and projection surface (right).</figcaption>
+</figure>
+
+<p>Next, we setup a webcam to capture activity on the stairs. We hung a <a href="http://www.microsoft.com/hardware/en-us/p/lifecam-cinema/H5D-00013">Microsoft LifeCam</a> from the lighting fixture and draped a long usb extension cable over a wall to our waiting computer. The captured video is processed with the <a href="https://github.com/shimat/opencvsharp">OpenCV</a> image processing library where we compare the current video frame to previous video frames and determine what has changed. In this way, we can track motion and activity on the stairs.</p>
+<figure>
+    <img src="/assets/images/stairwell/visual-examples.png" alt="three examples">
+    <figcaption>Three of our final visuals: a particle generator (left), a grid based reveal (center), and space invaders (right).</figcaption>
+</figure>
+
+<p>Once we collected this image data, we moved to the web. We created a dozen different visualizations which took advantage of several different <a href="http://www.pixijs.com/">open source</a> <a href="http://processingjs.org/">web graphics</a> <a href="http://soulwire.github.io/sketch.js/">libraries</a>. A few creations didn&apos;t turn out but in the end we had 6 different visuals we liked. Instead of settling on one, we decided to use them all. The final visuals land in three camps: particle generators, grid based reveals, and classic video game homage. A particle generator reads a person&apos;s location on the stairs and creates many small images at the corresponding location in the visual. The grid based reveal visualizations have an underlying, grid-based, system that lays dormant until movement causes them to reveal themselves. Lastly, we created two video game related visuals: a Super Mario (NES) particle generator where little Marios come sprouting out of warp pipes, and a working (albeit unlosable) game of space invaders.</p>
+<figure>
+   <div class="video-wrapper">
+      <iframe src="//player.vimeo.com/video/101571609?title=0&amp;byline=0&amp;portrait=0&amp;color=00d8fa" allowfullscreen></iframe>
+   </div>
+    <figcaption>Video examples of all the visualizations. The handsome man on the right shows the raw webcam footage to which the visualizations are reacting.</figcaption>
+</figure>
+
+<p>I&apos;m really happy with the results. A bunch of people were able to contribute to the project and we made really quick progress. The project has been running for several months now and has received rave reviews from fellow office mates. Overall, a really successful HAX project.</p>
+
+
+      <footer>
+         <div class="posted">Posted on July 23, 2014</div>
+         
+      </footer>
+   </article>
+
+    </main>
+
+   <footer>
+      
+<div class="author-info">
+	<div class="avatar">
+	
+		<img src="https://s.gravatar.com/avatar/66c9ff85009c90f497921783acce4b41?s=200" class="bio-photo img-circle" alt="frank hadder bio photo">
+	
+	</div>
+
+	<div class="links">
+		<h2>frank hadder</h2>
+		
+
+		
+		<script>
+		{coded="sf1wGssjFj@3Fj7s.1rF";key="vj3uqe0V1XCQ6FOs7KTAbEpfYdtonhZyWBMx2R8NkS4ag5IrzPcGUJHmLliDw9";shift=coded.length;link="";for(i=0;i<coded.length;i++){if(key.indexOf(coded.charAt(i))==-1){ltr=coded.charAt(i);link+=ltr}else{ltr=(key.indexOf(coded.charAt(i))-shift+key.length)%key.length;link+=key.charAt(ltr)}}
+		document.write('<a href="mailto:'+link+'" class="author-social" target="_blank"><i class="fa fa-envelope-square"></i>Email</a>')}
+		</script>
+
+		<a href="http://twitter.com/luckyllamas" class="author-social" target="_blank"><i class="fa fa-twitter-square"></i>Twitter</a>
+		<a href="http://facebook.com/#username" class="author-social" target="_blank"><i class="fa fa-facebook-square"></i>Facebook</a>
+		<a href="http://plus.google.com/+frankhadderrocks" class="author-social" target="_blank"><i class="fa fa-google-plus-square"></i>Google+</a>
+		
+		<a href="http://instagram.com/luckyllama" class="author-social" target="_blank"><i class="fa fa-instagram"></i>Instagram</a>
+		<a href="http://luckyllama.tumblr.com" class="author-social" target="_blank"><i class="fa fa-tumblr-square"></i>Tumblr</a>
+		<a href="http://github.com/luckyllama" class="author-social" target="_blank"><i class="fa fa-github"></i>Github</a>
+		<a href="http://stackoverflow.com/users/3617/frank-hadder" class="author-social" target="_blank"><i class="fa fa-stack-overflow"></i>Stackoverflow</a>
+		<a href="http://lastfm.com/user/luckyllama" class="author-social" target="_blank"><i class="fa fa-music"></i>Last.fm</a>
+		
+		
+		
+		
+	</div>
+</div>
+
+
+      <small>
+         <hr>
+         <span>&#xA9; 2015 frank hadder
+      </span></small>
+   </footer>
+
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="/assets/scripts/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+   <script src="/assets/scripts/vendor/lodash-2.4.1.min.js"></script>
+
+   <script src="/assets/scripts/app.min.js"></script>
+   
+
+   
+
+</body>
+
+</html>

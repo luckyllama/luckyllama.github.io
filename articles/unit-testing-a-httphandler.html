@@ -6,13 +6,13 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>All Articles - frank hadder</title>
+   <title>Unit Testing a HttpHandler - frank hadder</title>
 
    
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Twitter Cards -->
-   <meta name="twitter:title" content="All Articles">
+   <meta name="twitter:title" content="Unit Testing a HttpHandler">
    
    <meta name="twitter:site" content="@luckyllamas">
    
@@ -24,9 +24,9 @@
    <!-- Open Graph -->
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="article">
-   <meta property="og:title" content="All Articles">
+   <meta property="og:title" content="Unit Testing a HttpHandler">
    
-   <meta property="og:url" content="http://frankhadder.com">
+   <meta property="og:url" content="http://frankhadder.comarticles/unit-testing-a-httphandler.html">
    <meta property="og:site_name" content="frank hadder">
 
    <link rel="author" href="http://plus.google.com/+frankhadderrocks?rel=author">
@@ -52,7 +52,7 @@
    </header>
    <nav>
       <ul>
-         <li role="presentation"><a  href="/about">about</a></li>
+         <li role="presentation"><a href="/about">about</a></li>
          <li role="presentation"><a class="active" href="/">articles</a></li>
       </ul>
    </nav>
@@ -66,64 +66,34 @@
 
 
       
-   <section class="article-list">
-      
-         <article>
-            <h3><a href="articles/ha-stairwell.html">Watch Your Step!</a></h3>
-            <div class="posted">Posted on July 23, 2014</div>
-            <a href="articles/ha-stairwell.html"><img src="/assets/images/stairwell/hero.png" /></a>
-            <p>
-               An interactive stairwell exibit done at Hornall Anderson.
-            </p>
-            <a class="more" href="articles/ha-stairwell.html">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
-         </article>
-         <hr />
-      
-         <article>
-            <h3><a href="articles/barrier-grid.html">Barrier-Grid Optical Illusion</a></h3>
-            <div class="posted">Posted on January 13, 2014</div>
-            <a href="articles/barrier-grid.html"><img src="/assets/images/projects/barrier-grid/poster.png" /></a>
-            <p>
-               A transparent mask moved on top of a static image creates the illusion of animation in this optical illusion.
-            </p>
-            <a class="more" href="articles/barrier-grid.html">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
-         </article>
-         <hr />
-      
-         <article>
-            <h3><a href="articles/sorting-visualizations.html">Sorting Visualizations</a></h3>
-            <div class="posted">Posted on December 31, 2012</div>
-            <a href="articles/sorting-visualizations.html"><img src="/assets/images/projects/sorting-poster.png" /></a>
-            <p>
-               An SVG visualization of several sorting algorithms.
-            </p>
-            <a class="more" href="articles/sorting-visualizations.html">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
-         </article>
-         <hr />
-      
-         <article>
-            <h3><a href="articles/ncaa-football-organizations-inspired-by-european-soccer.html">NCAA Football Organizations Inspired by European Soccer</a></h3>
-            <div class="posted">Posted on August 15, 2011</div>
-            
-            <p>
-               
-            </p>
-            <a class="more" href="articles/ncaa-football-organizations-inspired-by-european-soccer.html">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
-         </article>
-         <hr />
-      
-         <article>
-            <h3><a href="articles/unit-testing-a-httphandler.html">Unit Testing a HttpHandler</a></h3>
-            <div class="posted">Posted on July 23, 2011</div>
-            
-            <p>
-               
-            </p>
-            <a class="more" href="articles/unit-testing-a-httphandler.html">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
-         </article>
-         <hr />
-      
-   </section>
+   <article>
+      <p>This is a simple trick that escaped me for a while today. A class that implements <code>IHttpHandler</code> has one main method that looks like this normally:</p>
+<pre><code class="c-sharp">
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ProcessRequest</span><span class="hljs-params">(HttpContext context)</span> </span>{
+    <span class="hljs-comment">// processing logic</span>
+}
+</code></pre>
+
+<p>Because the <code>HttpContext</code> class is sealed, you can have a hard time mocking it for unit testing purposes. In .net 3.5, Microsoft created a <code>HttpContextBase</code> that newer code uses instead of <code>HttpContext</code> which can be mocked but the <code>IHttpHandler</code> wasn&apos;t created to use it.</p>
+<p>To get around this, all you really need to do is change your class to the following:</p>
+<pre><code class="c-sharp">
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ProcessRequest</span><span class="hljs-params">(HttpContext context)</span> </span>{
+    ProcessRequest(<span class="hljs-keyword">new</span> HttpContextWrapper(context));
+}
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ProcessRequest</span><span class="hljs-params">(HttpContextBase context)</span> </span>{
+    <span class="hljs-comment">// processing logic</span>
+}
+</code></pre>
+
+<p>When you structure it this way, your unit testing code that passes in a <code>HttpContextBase</code> object will naturally work while still fulfilling the interface requirements.</p>
+<p>Like I said, a simple trick but one that took a little while to occur to me.</p>
+
+
+      <footer>
+         <div class="posted">Posted on July 23, 2011</div>
+         <div class="modified">Last Modified on July 23, 2011</div>
+      </footer>
+   </article>
 
     </main>
 
@@ -132,7 +102,7 @@
 <div class="author-info">
 	<div class="avatar">
 	
-		<img src="https://s.gravatar.com/avatar/66c9ff85009c90f497921783acce4b41?s=200" class="bio-photo img-circle" alt="frank hadder bio photo"></a>
+		<img src="https://s.gravatar.com/avatar/66c9ff85009c90f497921783acce4b41?s=200" class="bio-photo img-circle" alt="frank hadder bio photo">
 	
 	</div>
 
@@ -164,9 +134,9 @@
 
 
       <small>
-         <hr />
-         <span>&copy; 2015 frank hadder
-      </small>
+         <hr>
+         <span>&#xA9; 2015 frank hadder
+      </span></small>
    </footer>
 
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
