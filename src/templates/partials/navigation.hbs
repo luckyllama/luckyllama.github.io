@@ -1,9 +1,0 @@
----
-component: navigation
----
-
-<ul>
-{{#each navigation }}
-	<li role="presentation"><a href="{{ url }}" {{#contains url "http" }}target="_blank"{{/contains}}>{{ title }}</a></li>
-{{/each}}
-</ul>

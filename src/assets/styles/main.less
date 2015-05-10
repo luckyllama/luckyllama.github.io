@@ -9,11 +9,13 @@
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
+	padding: 0 40px;
 }
 .standard-size {
 	width: 100%;
-	max-width: 700px;
+	max-width: 780px;
 	margin-left: auto; margin-right: auto;
+	padding: 0 40px;
 }
 .playdown {
 	font-size: .9em;
@@ -61,15 +63,11 @@ small { font-size: 0.75em; }
 h2 small, h3 small { font-size: 0.7em; color: @black; }
 
 body > header {
-	position: fixed;
-	top: 0;
-	transform: translateZ(0);
 	width: 100%;
 	background: fade(@white, 70%);
 	.sans-serif;
 	font-weight: 700;
 	text-align: center;
-	z-index: 10;
 
 	> a {
 		color: @red;
@@ -97,6 +95,7 @@ body > header {
 		font-size: 1em;
 		padding-bottom: .3em;
 		border-color: @red;
+		z-index: 10;
 		.is-open { display: none; }
 	}
 	.logo {
@@ -115,7 +114,7 @@ body > header {
 }
 
 body > nav {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -170,6 +169,7 @@ body {
 	img {
 		display: block;
 		margin: 0 auto;
+		max-width: 100%;
 	}
 	.image-credit {
 		display: block;
@@ -192,7 +192,6 @@ body {
 }
 
 main {
-	padding-top: 80px;
 	padding-bottom: 2.827em;
 	border-bottom: .354em solid @red;
 
@@ -220,6 +219,7 @@ main {
 		article {
 			.standard-size;
 			overflow: hidden;
+			> * { padding: 0; }
 			h3 a { box-shadow: none; }
 			h3 a:hover { box-shadow: none; }
 			.posted { .playdown; }
@@ -285,7 +285,7 @@ body > footer {
 		}
 		.links {
 			float: left;
-			width: 40em;
+			max-width: 40em;
 			h2 { margin-top: 0; font-weight: 400; }
 		}
 		a {
@@ -309,3 +309,17 @@ body > footer {
 	}
 	.fa { margin-right: 8px; }
 }
+
+.video-wrapper {
+	width: 100%;
+	position: relative;
+	padding-bottom: 60%;
+	iframe {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
+.small-screen-warning { display: none; }
+
+@import "responsive";

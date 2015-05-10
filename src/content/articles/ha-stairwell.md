@@ -43,7 +43,9 @@ Next, we setup a webcam to capture activity on the stairs. We hung a [Microsoft 
 Once we collected this image data, we moved to the web. We created a dozen different visualizations which took advantage of several different [open source][lib1] [web graphics][lib2] [libraries][lib3]. A few creations didn't turn out but in the end we had 6 different visuals we liked. Instead of settling on one, we decided to use them all. The final visuals land in three camps: particle generators, grid based reveals, and classic video game homage. A particle generator reads a person's location on the stairs and creates many small images at the corresponding location in the visual. The grid based reveal visualizations have an underlying, grid-based, system that lays dormant until movement causes them to reveal themselves. Lastly, we created two video game related visuals: a Super Mario (NES) particle generator where little Marios come sprouting out of warp pipes, and a working (albeit unlosable) game of space invaders.
 
 <figure>
-	<iframe width="700" height="394" src="//player.vimeo.com/video/101571609?title=0&amp;byline=0&amp;portrait=0&amp;color=00d8fa" allowfullscreen=""></iframe>
+   <div class="video-wrapper">
+	  <iframe src="//player.vimeo.com/video/101571609?title=0&amp;byline=0&amp;portrait=0&amp;color=00d8fa" allowfullscreen=""></iframe>
+   </div>
 	<figcaption>Video examples of all the visualizations. The handsome man on the right shows the raw webcam footage to which the visualizations are reacting.</figcaption>
 </figure>
 

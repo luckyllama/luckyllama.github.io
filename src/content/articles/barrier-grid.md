@@ -14,6 +14,8 @@ scripts:
   - /assets/scripts/projects/barrier-grid/main.js
 ---
 
+<div class="small-screen-warning">This article may not display correctly on a small screen device. Sorry!</div>
+
 A barrier-grid animation is an interesting real-world animation technique that's been around for decades. A special static image is created with a transparent, striped, mask layed on top of it. Sliding the mask to the left or right shows and hides animation frames destilled into the static image so that only one frame is showing at a time. Your brain fills in the rest and the image appears to move.
 
 <div class="barrier-grid">
