@@ -24,6 +24,7 @@
          "jsGeneral": "src/assets/scripts/app/*.js",
          "jsGeneralDest": "assets/scripts/app.min.js",
          "jsProject": "src/assets/scripts/projects/**/*.js",
+         "tsProject": ["src/assets/scripts/projects/**/*.ts", "src/assets/scripts/vendor/**/*.ts"],
          "jsVendor": "src/assets/scripts/vendor/**/*.js",
 
          "templates": {

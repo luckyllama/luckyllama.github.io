@@ -11,9 +11,9 @@ tags: [projects]
 comments: true
 
 scripts:
-  - /assets/js/vendor/d3.min.js
-  - /assets/js/projects/sorting/sorting.js
-extra: [sorting]
+  - /assets/scripts/vendor/d3.min.js
+  - /assets/scripts/projects/sorting/sorting.js
+hero: sorting
 ---
 
 Inspired by [sortvis.org](http://sortvis.org), these visualizations create an interesting way to view various sorting

@@ -10,6 +10,8 @@
          <span class="image-credit">Photo Credit: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></span>
       {% endif %}
    </div>
+{% elseif page.hero %}
+   <div class="hero {{ page.hero }}"></div>
 {% else %}
    <div class="no-hero"><div></div></div>
 {% endif %}

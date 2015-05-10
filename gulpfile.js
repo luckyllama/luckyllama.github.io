@@ -115,18 +115,25 @@ gulp.task("jshint", function () {
 		.pipe($.jshint())
 		.pipe($.jshint.reporter("jshint-stylish"));
 });
-gulp.task("scripts", ["jshint"], function () {
-	var copy = gulp.src([build.paths.jsProject, build.paths.jsVendor], settings)
+gulp.task("typescript", function () {
+   return gulp.src(build.paths.tsProject, settings)
+		.pipe($.typescript({noExternalResolve:true}))
 		.pipe(gulp.dest(build.dest))
+		.pipe($.size({ title: "ts::project" }));
+});
+gulp.task("scripts", ["jshint", "typescript"], function () {
+	var projectJs = gulp.src([build.paths.jsProject, build.paths.jsVendor], settings)
 		.pipe($.size({ title: "js::project/vendor" }));
 
-	gulp.src(build.paths.jsGeneral, settings)
+	var generalJs = gulp.src(build.paths.jsGeneral, settings)
 		.pipe($.size({title: "js:general::before"}))
 		.pipe($.plumber())
 		.pipe($.uglify())
 		.pipe($.concat(build.paths.jsGeneralDest))
-		.pipe(gulp.dest(build.dest))
-		.pipe($.size({title: "js:general::after"}));;
+		.pipe($.size({title: "js:general::after"}));
+
+	return merge(projectJs, generalJs)
+		.pipe(gulp.dest(build.dest));
 });
 
 gulp.task("images", function () {
