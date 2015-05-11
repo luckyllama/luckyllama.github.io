@@ -149,9 +149,15 @@ gulp.task("images", function () {
 		.pipe($.size({title: "images"}));
 });
 gulp.task("static", ["images"], function () {
-	return gulp.src(build.paths.staticAssets, settings)
+	var staticAssets = gulp.src(build.paths.staticAssets, settings)
 		.pipe($.changed(build.dest))
 		.pipe(gulp.dest(build.dest));
+
+	var rootAssets = gulp.src(build.paths.rootAssets)
+		.pipe($.changed(build.dest))
+		.pipe(gulp.dest(build.dest));
+
+	return merge(staticAssets, rootAssets);
 });
 
 gulp.task("watch", function () {

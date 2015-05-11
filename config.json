@@ -18,6 +18,7 @@
          "styles": "src/assets/styles/**/*",
          "images": ["src/assets/styles/images/**/*", "src/assets/images/**/*"],
          "staticAssets": [ "src/assets/styles/fonts/*" ],
+         "rootAssets": [ "src/assets/root/*" ],
          "articles": "src/content/articles/**/*.md",
          "pagesHtml": "src/content/pages/*.html",
          "pagesMarkdown": "src/content/pages/*.md",
