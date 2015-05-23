@@ -53,6 +53,7 @@ var applyTemplate = function (templateFile) {
    });
 };
 
+// inspiration from http://blog.crushingpennies.com/a-static-site-generator-with-gulp-proseio-and-travis-ci.html
 gulp.task("articles", function () {
    var articles = gulp.src(build.paths.articles, { base: build.src + "/content" })
       .pipe($.frontMatter({ property: "page", remove: true }))

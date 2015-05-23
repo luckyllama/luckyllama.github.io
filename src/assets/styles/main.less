@@ -20,16 +20,17 @@
 .playdown {
 	font-size: .9em;
 	font-style: italic;
-	color: @dark-gray;
+	color: @brown;
 }
-// http://www.colourlovers.com/palette/1648011/lonely_girl
-@red: #ff2d47;
-@dark-red: #a82837;
-@gray: #dedede;
+
 @black: #262626;
-@dark-gray: #3d3939;
 @white: #fff;
-@link: #2780e3;
+// http://coolors.co/app/50514f-c6c5b9-cee0dc-f25f5c-247ba0
+@red: #f25f5c;
+@blue: #247ba0;
+@brown: #50514f;
+@tan: #c6c5B9;
+@tan-alt: #edeec9;
 
 .serif { font-family: "freight-text-pro", serif; }
 .sans-serif { font-family: "sofia-pro", sans-serif; }
@@ -119,7 +120,7 @@ body > nav {
 	bottom: 0;
 	left: 0;
 	width: 300px;
-	background: @dark-red;
+	background: @brown;
 	transform: translate3d(-300px, 0, 0);
 	transition: transform .3s;
 	.sans-serif;
@@ -153,8 +154,7 @@ body {
 		transform: translate3d(300px,0,0);
 		> header .menu {
 			text-decoration: none;
-			// background: @dark-red;
-			border-color: @dark-red;
+			border-color: @brown;
 			color: @white;
 			outline: none;
 			span { display: none; }
@@ -176,37 +176,34 @@ body {
 		width: 40em;
 		margin: 0 auto 1.5em;
 		text-align: right;
-		color: @gray;
+		color: @brown;
 		font-style: italic;
-		a { color: @gray; }
+		a { color: @brown; }
 	}
 	margin-bottom: 1.3em;
 }
 .no-hero {
 	padding-top: 1.999em;
-	padding-top:2px;
+	padding-top: 4px;
 	margin-bottom: 2.827em;
-	background: @dark-gray;
-	border-bottom: solid .354em @red;
-	div { background: @dark-red; height: .5em; }
+	background: @brown;
 }
 
 main {
 	padding-bottom: 2.827em;
-	border-bottom: .354em solid @red;
 
 	a {
 		color: @black;
 		display: inline-block;
-		box-shadow: inset 0 -.2em 0 fade(@red, 20%);
+		box-shadow: inset 0 -.2em 0 fade(@blue, 100%);
 		line-height: 1.3;
 		display: inline-block;
 		transition: box-shadow .2s;
 	}
 	a:hover {
-		color: @red;
+		color: @black;
 		text-decoration: none;
-		box-shadow: inset 0 -1.3em 0 fade(@red, 20%);
+		box-shadow: inset 0 -1.3em 0 fade(@blue, 25%);
 	}
 	hr {
 		max-width: 10em !important;
@@ -230,8 +227,8 @@ main {
 				.sans-serif;
 				text-transform: uppercase;
 				padding: 0 0.3em 0.1em;
-				box-shadow: inset 0 -.2em 0 @red;
-				&:hover { box-shadow: inset 0 -1.4em 0 @red; color: @white; }
+				box-shadow: inset 0 -.2em 0 @blue;
+				&:hover { box-shadow: inset 0 -1.4em 0 fade(@blue, 25%); }
 				float: right;
 			}
 		}
@@ -270,13 +267,14 @@ main {
 
 body > footer {
 	padding: 2.827em 0;
-	background: @dark-gray;
+	background: @brown;
 	color: @white;
-	border-top: .5em solid @dark-red;
+	border-top: 4px solid @tan;
 
 	.author-info {
 		.max-size;
 		overflow: hidden;
+		box-sizing: content-box;
 
 		.bio-photo {
 			width: 90px;
@@ -285,7 +283,7 @@ body > footer {
 		}
 		.links {
 			float: left;
-			max-width: 40em;
+			max-width: 840px;
 			h2 { margin-top: 0; font-weight: 400; }
 		}
 		a {
@@ -298,7 +296,8 @@ body > footer {
 		display: block;
 		.max-size;
 		text-align: right;
-		hr { border-top-color: lighten(@dark-gray, 10%); }
+		box-sizing: content-box;
+		hr { border-top-color: @tan; }
 	}
 }
 
