@@ -355,7 +355,7 @@ class D3Display implements Display {
 	}
 
 	_setItemData() {
-		var baseColor = d3.rgb("#11ffff");
+		var baseColor = d3.rgb("#b3dcee");
 		var colorDelta = 1 / this.itemCount * 3;
 
 		var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
