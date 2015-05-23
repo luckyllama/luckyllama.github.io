@@ -343,7 +343,7 @@ var D3Display = (function () {
     };
     D3Display.prototype._setItemData = function () {
         var _this = this;
-        var baseColor = d3.rgb("#11ffff");
+        var baseColor = d3.rgb("#b3dcee");
         var colorDelta = 1 / this.itemCount * 3;
         var yOffset = (this.itemHeight / 2) - (this.itemWidth / 2);
         var items = this.svg.append("g").attr("class", "items").attr("transform", "translate(0," + yOffset + ")");

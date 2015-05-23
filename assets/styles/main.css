@@ -2100,7 +2100,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .playdown {
   font-size: .9em;
   font-style: italic;
-  color: #3d3939;
+  color: #50514f;
 }
 .serif {
   font-family: "freight-text-pro", serif;
@@ -2168,7 +2168,7 @@ body > header {
   text-align: center;
 }
 body > header > a {
-  color: #ff2d47;
+  color: #f25f5c;
   display: inline-block;
   font-size: 1.333em;
   line-height: 1;
@@ -2182,13 +2182,13 @@ body > header > a {
 }
 body > header > a:hover {
   text-decoration: none;
-  background: #ff2d47;
+  background: #f25f5c;
   color: #ffffff !important;
 }
 body > header > a:focus {
   outline: none;
   text-decoration: none;
-  color: #ff2d47;
+  color: #f25f5c;
 }
 body > header .menu {
   position: absolute;
@@ -2196,7 +2196,7 @@ body > header .menu {
   top: 1.1em;
   font-size: 1em;
   padding-bottom: .3em;
-  border-color: #ff2d47;
+  border-color: #f25f5c;
   z-index: 10;
 }
 body > header .menu .is-open {
@@ -2230,7 +2230,7 @@ body > nav {
   bottom: 0;
   left: 0;
   width: 300px;
-  background: #a82837;
+  background: #50514f;
   -webkit-transform: translate3d(-300px, 0, 0);
           transform: translate3d(-300px, 0, 0);
   -webkit-transition: -webkit-transform .3s;
@@ -2254,7 +2254,7 @@ body > nav ul {
 }
 body > nav ul li a.active,
 body > nav ul li a:hover {
-  background: #ff2d47;
+  background: #f25f5c;
   color: #ffffff;
 }
 body {
@@ -2269,7 +2269,7 @@ body.menu-open {
 }
 body.menu-open > header .menu {
   text-decoration: none;
-  border-color: #a82837;
+  border-color: #50514f;
   color: #ffffff;
   outline: none;
   -webkit-transform: translate3d(-300px, 0, 0);
@@ -2296,43 +2296,37 @@ body.menu-open > header .menu span.is-open {
   width: 40em;
   margin: 0 auto 1.5em;
   text-align: right;
-  color: #dedede;
+  color: #50514f;
   font-style: italic;
 }
 .hero .image-credit a {
-  color: #dedede;
+  color: #50514f;
 }
 .no-hero {
   padding-top: 1.999em;
-  padding-top: 2px;
+  padding-top: 4px;
   margin-bottom: 2.827em;
-  background: #3d3939;
-  border-bottom: solid 0.354em #ff2d47;
-}
-.no-hero div {
-  background: #a82837;
-  height: .5em;
+  background: #50514f;
 }
 main {
   padding-bottom: 2.827em;
-  border-bottom: 0.354em solid #ff2d47;
 }
 main a {
   color: #262626;
-  box-shadow: inset 0 -0.2em 0 rgba(255, 45, 71, 0.2);
+  box-shadow: inset 0 -0.2em 0 #247ba0;
   line-height: 1.3;
   display: inline-block;
   -webkit-transition: box-shadow 0.2s;
           transition: box-shadow 0.2s;
 }
 main a:hover {
-  color: #ff2d47;
+  color: #262626;
   text-decoration: none;
-  box-shadow: inset 0 -1.3em 0 rgba(255, 45, 71, 0.2);
+  box-shadow: inset 0 -1.3em 0 rgba(36, 123, 160, 0.25);
 }
 main hr {
   max-width: 10em !important;
-  border-top-color: #ff2d47;
+  border-top-color: #f25f5c;
   margin: 1.777em auto;
 }
 main hr:last-child {
@@ -2358,7 +2352,7 @@ main .article-list article h3 a:hover {
 main .article-list article .posted {
   font-size: .9em;
   font-style: italic;
-  color: #3d3939;
+  color: #50514f;
 }
 main .article-list article img {
   display: block;
@@ -2376,12 +2370,11 @@ main .article-list article .more {
   font-family: "sofia-pro", sans-serif;
   text-transform: uppercase;
   padding: 0 0.3em 0.1em;
-  box-shadow: inset 0 -0.2em 0 #ff2d47;
+  box-shadow: inset 0 -0.2em 0 #247ba0;
   float: right;
 }
 main .article-list article .more:hover {
-  box-shadow: inset 0 -1.4em 0 #ff2d47;
-  color: #ffffff;
+  box-shadow: inset 0 -1.4em 0 rgba(36, 123, 160, 0.25);
 }
 main article > * {
   width: 100%;
@@ -2406,7 +2399,7 @@ main article figure {
 main article figure figcaption {
   font-size: .9em;
   font-style: italic;
-  color: #3d3939;
+  color: #50514f;
   margin-top: 0.3em;
 }
 main article iframe {
@@ -2418,7 +2411,7 @@ main article ul {
 main article footer {
   font-size: .9em;
   font-style: italic;
-  color: #3d3939;
+  color: #50514f;
   overflow: hidden;
 }
 main article footer div {
@@ -2429,9 +2422,9 @@ main article footer div + div {
 }
 body > footer {
   padding: 2.827em 0;
-  background: #3d3939;
+  background: #50514f;
   color: #ffffff;
-  border-top: 0.5em solid #a82837;
+  border-top: 4px solid #c6c5b9;
 }
 body > footer .author-info {
   width: 100%;
@@ -2439,6 +2432,8 @@ body > footer .author-info {
   margin: 0 auto;
   padding: 0 40px;
   overflow: hidden;
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
 }
 body > footer .author-info .bio-photo {
   width: 90px;
@@ -2447,7 +2442,7 @@ body > footer .author-info .bio-photo {
 }
 body > footer .author-info .links {
   float: left;
-  max-width: 40em;
+  max-width: 840px;
 }
 body > footer .author-info .links h2 {
   margin-top: 0;
@@ -2465,9 +2460,11 @@ body > footer small {
   margin: 0 auto;
   padding: 0 40px;
   text-align: right;
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
 }
 body > footer small hr {
-  border-top-color: #575252;
+  border-top-color: #c6c5b9;
 }
 .author-social:hover {
   -webkit-transform: none;
@@ -2537,7 +2534,7 @@ body > footer small hr {
   .small-screen-warning {
     display: block;
     color: #ffffff;
-    background: #ff2d47;
+    background: #f25f5c;
     font-family: "sofia-pro", sans-serif;
     font-weight: 700;
     padding: 20px;
