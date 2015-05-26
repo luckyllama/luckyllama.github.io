@@ -63,16 +63,15 @@ h4 { font-size: 1.0em; font-weight: 700; letter-spacing: .02em; }
 small { font-size: 0.75em; }
 h2 small, h3 small { font-size: 0.7em; color: @black; }
 
-body > header {
-	width: 100%;
-	background: fade(@white, 70%);
+header.main {
+	position: fixed;
 	.sans-serif;
 	font-weight: 700;
-	text-align: center;
 
 	> a {
 		color: @red;
-		display: inline-block;
+		display: block;
+		float: left;
 		font-size: 1.333em;
 		line-height: 1;
 		padding: 0.2em 0.3em 0.15em;
@@ -81,6 +80,8 @@ body > header {
 		text-transform: uppercase;
 		transition: all .3s;
 		border: solid 4px transparent;
+		height: 1.75em;
+		span { display: inline-block; }
 
 		&:hover {
 			text-decoration: none;
@@ -90,21 +91,22 @@ body > header {
 		&:focus { outline: none; text-decoration: none; color: @red; }
 	}
 	.menu {
-		position: absolute;
-		left: 1.1em;
-		top: 1.1em;
-		font-size: 1em;
-		padding-bottom: .3em;
 		border-color: @red;
+		background: @white;
 		z-index: 10;
 		.is-open { display: none; }
+		.menu-open & {
+			span { display: none; }
+			span.is-open { display: inline; }
+		}
 	}
 	.logo {
-		margin: 0.6em 0 0.5em;
+		margin: 0;
+		background: @red;
+		color: @white;
 
 		span {
 			overflow: hidden;
-			display: inline-block;
 			&:first-child { max-width: 0.6em; padding-right: 0.4em; }
 			&:last-child { max-width: 0.7em; }
 			transition: max-width .3s;
@@ -112,55 +114,41 @@ body > header {
 		&:hover span:first-child { max-width: 4.0em; }
 		&:hover span:last-child { max-width: 4.6em; }
 	}
-}
 
-body > nav {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	width: 300px;
-	background: @brown;
-	transform: translate3d(-300px, 0, 0);
-	transition: transform .3s;
-	.sans-serif;
-	font-size: 1.333em;
-	font-weight: 700;
-	color: @white;
-	z-index: 9;
-
-	a {
+	nav {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 300px;
+		.sans-serif;
+		font-weight: 700;
 		color: @white;
-		display: block;
-		padding: 0.3em 1.3em;
-		text-transform: uppercase;
-	}
-	ul {
-		margin: 80px 0 0;
-		padding: 0;
-		list-style: none;
-		li {
-			a {
-				&.active,
-				&:hover { background: @red; color: @white; }
-			}
+		z-index: -1;
+
+		transform: translate3d(-300px, 0, 0);
+		transition: transform .3s;
+		.menu-open & {
+			transform: translate3d(0,0,0);
 		}
-	}
-}
-body {
-	transform: translate3d(0,0,0);
-	transition: transform .3s;
-	&.menu-open {
-		transform: translate3d(300px,0,0);
-		> header .menu {
-			text-decoration: none;
-			border-color: @brown;
+
+		a {
 			color: @white;
-			outline: none;
-			span { display: none; }
-			span.is-open { display: inline; }
-			transform: translate3d(-300px, 0, 0);
-			transition: transform .3s;
+			background: @red;
+			display: inline-block;
+			padding: 0.3em 1.3em;
+			text-transform: uppercase;
+		}
+		ul {
+			margin: 53px 0 0;
+			padding: 0;
+			list-style: none;
+			li {
+				margin: .3em 0;
+				a {
+					&.active { background: @brown; color: @white; }
+					&.active:hover { text-decoration: none; }
+				}
+			}
 		}
 	}
 }
@@ -183,10 +171,7 @@ body {
 	margin-bottom: 1.3em;
 }
 .no-hero {
-	padding-top: 1.999em;
-	padding-top: 4px;
-	margin-bottom: 2.827em;
-	background: @brown;
+	min-height: 1.33em;
 }
 
 main {
@@ -207,7 +192,7 @@ main {
 	}
 	hr {
 		max-width: 10em !important;
-		border-top-color: @red;
+		border-top-color: @blue;
 		margin: 1.777em auto;
 	}
 	hr:last-child { display: none; }

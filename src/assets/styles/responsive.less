@@ -2,29 +2,22 @@
 @media only screen and (max-width: 600px) {
    body { font-size: 17px; }
 
-   body > header {
-      text-align: right;
-      // > a { font-size: 1em; }
-      .menu {
-         top: 14px;
-         left: 20px;
-      }
-      .logo {
-         margin: 8px 6px 12px;
-      }
+   header.main {
+      > a { height: 1.95em; }
+      nav ul { margin-top: 50px; }
    }
-   body > nav { font-size: 1em; }
 
    main article > *,
    main .article-list article,
-   body > footer .author-info {
+   body > footer .author-info,
+   body > footer small {
       padding: 0 20px;
+      box-sizing: border-box;
    }
 
    .no-hero {
       margin-bottom: 1em;
    }
-
    body > footer .author-info .links h2 {
       margin-bottom: 15px;
    }

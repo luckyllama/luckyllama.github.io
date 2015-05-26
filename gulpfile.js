@@ -163,8 +163,7 @@ gulp.task("static", ["images"], function () {
 
 gulp.task("watch", function () {
 	gulp.watch(build.paths.styles, ["styles"]);
-	gulp.watch(build.paths.templates.base + "/**/*", ["articles"]);
-	gulp.watch([build.paths.pagesHtml, build.paths.articles], ["pages"]);
+	gulp.watch([build.paths.templates.base + "/**/*", build.paths.pagesHtml, build.paths.articles], ["pages"]);
    gulp.watch([build.paths.jsGeneral, build.paths.jsProject, build.paths.jsVendor], ["scripts"]);
 	gulp.watch(build.paths.coffeeProject, ["coffeescript"]);
 	gulp.watch(build.paths.tsProject, ["typescript"]);
