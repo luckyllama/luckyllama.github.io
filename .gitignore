@@ -22,3 +22,4 @@ build
 .tscache
 .settings
 .publish
+tsconfig.json

@@ -1,6 +1,6 @@
 ---
-title: Sorting Visualizations
-summary: An SVG visualization of several sorting algorithms.
+title: Music Data Art
+summary: Transforming raw sheet music data into art.
 .summaryImage: projects/sorting-poster.png
 date: 2015-05-24
 modified: 2015-05-24
@@ -14,6 +14,8 @@ comments: true
 
 scripts:
   - /assets/scripts/vendor/d3.min.js
-  - /assets/scripts/projects/sorting/.js
-hero: sorting
+  - /assets/scripts/projects/music-art/music-xml.js
+  - /assets/scripts/projects/music-art/view.js
+
+hero: canvas-container
 ---
