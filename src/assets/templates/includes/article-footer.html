@@ -1,0 +1,5 @@
+
+<footer>
+   {% if page.date %}<div class="posted">Posted on {{ page.date | date("F j, Y") }}</div>{% endif %}
+   {% if page.modified %}<div class="modified">Last Modified on {{ page.modified | date("F j, Y") }}</div>{% endif %}
+</footer>

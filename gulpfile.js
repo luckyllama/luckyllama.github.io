@@ -55,7 +55,7 @@ var applyTemplate = function (templateFile) {
 
 // inspiration from http://blog.crushingpennies.com/a-static-site-generator-with-gulp-proseio-and-travis-ci.html
 gulp.task("articles", function () {
-   var articles = gulp.src(build.paths.articles, { base: build.src + "/content" })
+   var articlesHtml = gulp.src(build.paths.articles, { base: build.src + "/content" })
       .pipe($.frontMatter({ property: "page", remove: true }))
       .pipe($.marked())
       // Collect all the articles and place them on the site object.
@@ -84,7 +84,17 @@ gulp.task("articles", function () {
       .pipe($.rename({extname: ".html"}))
       .pipe(gulp.dest(build.dest));
 
-	return merge(articles);
+	   var articlesJson = gulp.src(build.paths.articles, { base: build.src + "/content" })
+	      .pipe($.frontMatter({ property: "page", remove: true }))
+	      .pipe($.marked())
+	      .pipe(applyTemplate(build.paths.templates.articleJson))
+	      .pipe($.rename({ extname: ".json.js" }))
+			.pipe(gulp.dest(build.dest))
+			.pipe($.size({ title: "articles::json" }));
+			// .pipe($.highlight())
+	// .pipe($.rename({ extname: ".js" }))
+
+	return merge(articlesHtml, articlesJson);
 });
 
 gulp.task("pages", ["articles"], function () {

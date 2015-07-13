@@ -1,15 +1,12 @@
 {% set page.nav = "article" %}
 {% extends "base.html" %}
 
+
 {% block content %}
+   {% include "includes/hero.html" %}
    <article>
-      <h1>{{page.title}}</h1>
-
+      {% include "includes/article-header.html" %}
       {{content|safe}}
-
-      <footer>
-         {% if page.date %}<div class="posted">Posted on {{ page.date | date("F j, Y") }}</div>{% endif %}
-         {% if page.modified %}<div class="modified">Last Modified on {{ page.modified | date("F j, Y") }}</div>{% endif %}
-      </footer>
+      {% include "includes/article-footer.html" %}
    </article>
 {% endblock %}

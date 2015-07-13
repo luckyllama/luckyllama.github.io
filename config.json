@@ -32,6 +32,7 @@
          "templates": {
             "base": "src/assets/templates",
             "article": "src/assets/templates/article.html",
+            "articleJson": "src/assets/templates/article.json.js",
             "page": "src/assets/templates/page.html"
          }
       },
