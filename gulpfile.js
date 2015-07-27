@@ -81,20 +81,16 @@ gulp.task("articles", function () {
       })())
       .pipe(applyTemplate(build.paths.templates.article))
 		.pipe($.highlight())
-      .pipe($.rename({extname: ".html"}))
-      .pipe(gulp.dest(build.dest));
+      .pipe($.rename({extname: ".html"}));
 
-	   var articlesJson = gulp.src(build.paths.articles, { base: build.src + "/content" })
-	      .pipe($.frontMatter({ property: "page", remove: true }))
-	      .pipe($.marked())
-	      .pipe(applyTemplate(build.paths.templates.articleJson))
-	      .pipe($.rename({ extname: ".json.js" }))
-			.pipe(gulp.dest(build.dest))
-			.pipe($.size({ title: "articles::json" }));
-			// .pipe($.highlight())
-	// .pipe($.rename({ extname: ".js" }))
+   var articlesJson = gulp.src(build.paths.articles, { base: build.src + "/content" })
+      .pipe($.frontMatter({ property: "page", remove: true }))
+      .pipe($.marked())
+      .pipe(applyTemplate(build.paths.templates.articleJson))
+      .pipe($.rename({ extname: ".json.js" }));
 
-	return merge(articlesHtml, articlesJson);
+	return merge(articlesHtml, articlesJson)
+		.pipe(gulp.dest(build.dest));
 });
 
 gulp.task("pages", ["articles"], function () {
@@ -111,14 +107,31 @@ gulp.task("pages", ["articles"], function () {
          callback();
       }));
 
-      var markdown = gulp.src(build.paths.pagesMarkdown)
-         .pipe($.frontMatter({property: "page", remove: true}))
-         .pipe($.marked())
-         .pipe(applyTemplate(build.paths.templates.page))
-         .pipe($.rename({extname: ".html"}));
+   var markdown = gulp.src(build.paths.pagesMarkdown)
+      .pipe($.frontMatter({property: "page", remove: true}))
+      .pipe($.marked())
+      .pipe(applyTemplate(build.paths.templates.page))
+      .pipe($.rename({extname: ".html"}));
 
-    return merge(html, markdown)
-        .pipe(gulp.dest(build.dest));
+	var pageJson = gulp.src([build.paths.pagesMarkdown, build.paths.pagesHtml])
+      .pipe($.frontMatter({property: "page", remove: true}))
+      .pipe(through.obj(function (file, enc, callback) {
+         var data = {
+            site: site,
+            page: {}
+         };
+        	var contents = String(file.contents);
+			contents = contents.replace(/{%\sextends.*%}/gi, ""); // remove {extends} swig tag
+         var template = swig.compile(contents, { filename: file.path });
+         file.contents = new Buffer(template(data), "utf8");
+         this.push(file);
+         callback();
+      }))
+      .pipe(applyTemplate(build.paths.templates.pageJson))
+		.pipe($.rename({ extname: ".json.js" }));
+
+	return merge(html, markdown, pageJson)
+		.pipe(gulp.dest(build.dest));
 });
 
 gulp.task("jshint", function () {

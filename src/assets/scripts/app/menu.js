@@ -7,6 +7,9 @@
    });
 
    var getContent = function (url) {
+      if (url === "" || url === "/") {
+         url = "/index.html";
+      }
       $.ajax({ url: url.replace("html", "json.js"), dataType: "json" })
          .success(function (data) {
             if (!data || !data.content) { window.location.href = url; }
@@ -19,7 +22,7 @@
 
    if (window.history.pushState) {
       $(document).on("click", "a", function (event) {
-         var url = $(event.target).attr("href");
+         var url = $(event.currentTarget).attr("href");
          if (url.indexOf("http") < 0) {
             getContent(url);
          }
