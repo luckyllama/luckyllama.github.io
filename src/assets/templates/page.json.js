@@ -8,7 +8,7 @@
    "content":
       {% filter json %}
       {% block content %}
-         <article> {{ content | safe }} </article>
+         {{ content | safe }}
       {% endblock %}
       {% endfilter %}
 }

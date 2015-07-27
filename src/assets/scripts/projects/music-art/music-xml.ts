@@ -1,7 +1,3 @@
-///ts:ref=lodash
-/// <reference path="../../vendor/lodash.d.ts"/> ///ts:ref:generated
-///ts:ref=jquery
-/// <reference path="../../vendor/jquery.d.ts"/> ///ts:ref:generated
 
 module MusicXml {
    class Pitch {
@@ -37,7 +33,7 @@ module MusicXml {
          if (this.isGrace) { this.duration = 1; }
          this.tie = $("tie", $note).attr("type");
       }
-      toString (simple: boolean) : string {
+      toString (simple: boolean = true) : string {
          if (simple && this.pitch) {
             return `${this.pitch.step}${this._pitchAlterMap[this.pitch.alter]}`;
          } else if (!simple && this.pitch) {
@@ -53,7 +49,7 @@ module MusicXml {
             .replace("b", "&#9837;").replace("n", "&#9838;");
       }
       toHtml () : string {
-         return Note.toHtml(this.toString());
+        return Note.toHtml(this.toString());
       }
    }
 

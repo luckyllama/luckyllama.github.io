@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "noExternalResolve": false,
+        "removeComments": true,
+        "noLib": false,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "compileOnSave": false,
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./src/assets/scripts/app/ajax-load.ts",
+        "./src/assets/scripts/projects/music-art/music-xml.ts",
+        "./src/assets/scripts/projects/music-art/view.ts",
+        "./src/assets/scripts/projects/sorting/sorting.ts",
+        "./typings/d3/d3.d.ts",
+        "./typings/jquery/jquery.d.ts",
+        "./typings/lodash/lodash.d.ts",
+        "./typings/modernizr/modernizr.d.ts",
+        "./typings/node/node.d.ts"
+    ]
+}

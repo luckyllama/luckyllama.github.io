@@ -1,4 +1,4 @@
-/// <reference path="typings/node/node.d.ts"/>
+/*jslint node: true */
 "use strict";
 
 var gulp = require("gulp");
@@ -7,12 +7,13 @@ var del = require("del");
 var path = require("path");
 var swig = require("swig");
 var swigExtras = require("swig-extras");
-var through = require("through2")
+var through = require("through2");
 var runSequence = require("run-sequence");
 var merge = require("merge-stream");
 
 var config = require("./config.json");
 var build = config.build;
+var paths = build.paths;
 
 var onError = function (err) {
 	$.util.beep();
@@ -23,7 +24,7 @@ var settings = { base: build.src };
 var site = config.site;
 
 gulp.task("styles", function () {
-	return gulp.src(build.paths.less, settings)
+	return gulp.src(paths.less, settings)
 		.pipe($.plumber({ errorHandler: onError }))
 		.pipe($.less({ paths: [ path.join(__dirname, "less", "includes") ] }))
 		.pipe($.autoprefixer({ browsers: build.browsers }))
@@ -31,12 +32,11 @@ gulp.task("styles", function () {
 });
 
 swig.setDefaults({
-    loader: swig.loaders.fs(path.join(__dirname, build.paths.templates.base)),
+    loader: swig.loaders.fs(path.join(__dirname, paths.templates.base)),
     locals: { now: function () { return new Date(); } },
     cache: false
 });
 swigExtras.useFilter(swig, "truncate");
-
 
 var applyTemplate = function (templateFile) {
    var template = swig.compileFile(path.join(__dirname, templateFile));
@@ -55,7 +55,7 @@ var applyTemplate = function (templateFile) {
 
 // inspiration from http://blog.crushingpennies.com/a-static-site-generator-with-gulp-proseio-and-travis-ci.html
 gulp.task("articles", function () {
-   var articlesHtml = gulp.src(build.paths.articles, { base: build.src + "/content" })
+   var articlesHtml = gulp.src(paths.articles, { base: build.src + "/content" })
       .pipe($.frontMatter({ property: "page", remove: true }))
       .pipe($.marked())
       // Collect all the articles and place them on the site object.
@@ -79,14 +79,14 @@ gulp.task("articles", function () {
             callback();
          });
       })())
-      .pipe(applyTemplate(build.paths.templates.article))
+      .pipe(applyTemplate(paths.templates.article))
 		.pipe($.highlight())
       .pipe($.rename({extname: ".html"}));
 
-   var articlesJson = gulp.src(build.paths.articles, { base: build.src + "/content" })
+   var articlesJson = gulp.src(paths.articles, { base: build.src + "/content" })
       .pipe($.frontMatter({ property: "page", remove: true }))
       .pipe($.marked())
-      .pipe(applyTemplate(build.paths.templates.articleJson))
+      .pipe(applyTemplate(paths.templates.articleJson))
       .pipe($.rename({ extname: ".json.js" }));
 
 	return merge(articlesHtml, articlesJson)
@@ -94,7 +94,7 @@ gulp.task("articles", function () {
 });
 
 gulp.task("pages", ["articles"], function () {
-   var html = gulp.src([build.paths.pagesHtml])
+   var html = gulp.src([paths.pagesHtml])
       .pipe($.frontMatter({property: "page", remove: true}))
       .pipe(through.obj(function (file, enc, callback) {
          var data = {
@@ -107,13 +107,13 @@ gulp.task("pages", ["articles"], function () {
          callback();
       }));
 
-   var markdown = gulp.src(build.paths.pagesMarkdown)
+   var markdown = gulp.src(paths.pagesMarkdown)
       .pipe($.frontMatter({property: "page", remove: true}))
       .pipe($.marked())
-      .pipe(applyTemplate(build.paths.templates.page))
+      .pipe(applyTemplate(paths.templates.page))
       .pipe($.rename({extname: ".html"}));
 
-	var pageJson = gulp.src([build.paths.pagesMarkdown, build.paths.pagesHtml])
+	var pageJson = gulp.src([paths.pagesMarkdown, paths.pagesHtml])
       .pipe($.frontMatter({property: "page", remove: true}))
       .pipe(through.obj(function (file, enc, callback) {
          var data = {
@@ -127,7 +127,7 @@ gulp.task("pages", ["articles"], function () {
          this.push(file);
          callback();
       }))
-      .pipe(applyTemplate(build.paths.templates.pageJson))
+      .pipe(applyTemplate(paths.templates.pageJson))
 		.pipe($.rename({ extname: ".json.js" }));
 
 	return merge(html, markdown, pageJson)
@@ -135,31 +135,29 @@ gulp.task("pages", ["articles"], function () {
 });
 
 gulp.task("jshint", function () {
-	return gulp.src(build.paths.jsGeneral)
+	return gulp.src(paths.jsGeneral)
 		.pipe($.jshint())
 		.pipe($.jshint.reporter("jshint-stylish"));
 });
 gulp.task("typescript", function () {
-   return gulp.src(build.paths.tsProject, settings)
-		.pipe($.typescript({noExternalResolve:true}))
-		.pipe(gulp.dest(build.dest))
-		.pipe($.size({ title: "ts::project" }));
+	var tsconfig = $.typescript.createProject("tsconfig.json");
+   return gulp.src(paths.tsProject, settings)
+		.pipe($.typescript(tsconfig))
+		.pipe(gulp.dest(build.dest));
 });
 gulp.task("coffeescript", function () {
-	return gulp.src(build.paths.coffeeProject, settings)
+	return gulp.src(paths.coffeeProject, settings)
 		.pipe($.coffee().on('error', onError))
-		.pipe(gulp.dest(build.dest))
-		.pipe($.size({ title: "coffee::project" }));
+		.pipe(gulp.dest(build.dest));
 });
 gulp.task("scripts", ["jshint", "typescript", "coffeescript"], function () {
-	var projectJs = gulp.src([build.paths.jsProject, build.paths.jsVendor], settings)
-		.pipe($.size({ title: "js::project/vendor" }));
+	var projectJs = gulp.src([paths.jsProject, paths.jsVendor], settings);
 
-	var generalJs = gulp.src(build.paths.jsGeneral, settings)
+	var generalJs = gulp.src(paths.jsGeneral, settings)
 		.pipe($.size({title: "js:general::before"}))
 		.pipe($.plumber())
 		.pipe($.uglify())
-		.pipe($.concat(build.paths.jsGeneralDest))
+		.pipe($.concat(paths.jsGeneralDest))
 		.pipe($.size({title: "js:general::after"}));
 
 	return merge(projectJs, generalJs)
@@ -167,17 +165,17 @@ gulp.task("scripts", ["jshint", "typescript", "coffeescript"], function () {
 });
 
 gulp.task("images", function () {
-	return gulp.src(build.paths.images, settings)
+	return gulp.src(paths.images, settings)
       .pipe($.changed(build.dest))
 		.pipe(gulp.dest(build.dest))
 		.pipe($.size({title: "images"}));
 });
 gulp.task("static", ["images"], function () {
-	var staticAssets = gulp.src(build.paths.staticAssets, settings)
+	var staticAssets = gulp.src(paths.staticAssets, settings)
 		.pipe($.changed(build.dest))
 		.pipe(gulp.dest(build.dest));
 
-	var rootAssets = gulp.src(build.paths.rootAssets)
+	var rootAssets = gulp.src(paths.rootAssets)
 		.pipe($.changed(build.dest))
 		.pipe(gulp.dest(build.dest));
 
@@ -185,14 +183,14 @@ gulp.task("static", ["images"], function () {
 });
 
 gulp.task("watch", function () {
-	gulp.watch(build.paths.styles, ["styles"]);
-	gulp.watch([build.paths.templates.base + "/**/*", build.paths.pagesHtml, build.paths.articles], ["pages"]);
-   gulp.watch([build.paths.jsGeneral, build.paths.jsProject, build.paths.jsVendor], ["scripts"]);
-	gulp.watch(build.paths.coffeeProject, ["coffeescript"]);
-	gulp.watch(build.paths.tsProject, ["typescript"]);
+	gulp.watch(paths.styles, ["styles"]);
+	gulp.watch([paths.templates.base + "/**/*", paths.pagesHtml, paths.articles], ["pages"]);
+   gulp.watch([paths.jsGeneral, paths.jsProject, paths.jsVendor], ["scripts"]);
+	gulp.watch(paths.coffeeProject, ["coffeescript"]);
+	gulp.watch(paths.tsProject, ["typescript"]);
 	gulp.watch([
-		build.paths.staticAssets,
-		build.paths.images
+		paths.staticAssets,
+		paths.images
 	], ["static"]);
 });
 

@@ -22,11 +22,11 @@
          "articles": "src/content/articles/**/*.md",
          "pagesHtml": "src/content/pages/*.html",
          "pagesMarkdown": "src/content/pages/*.md",
-         "jsGeneral": "src/assets/scripts/app/*.js",
+         "jsGeneral": ["src/assets/scripts/app/*.js"],
          "jsGeneralDest": "assets/scripts/app.min.js",
          "jsProject": "src/assets/scripts/projects/**/*.js",
-         "tsProject": ["src/assets/scripts/projects/**/*.ts", "src/assets/scripts/vendor/**/*.ts"],
-         "coffeeProject": "src/assets/scripts/projects/**/*.coffee",
+         "tsProject": ["src/assets/scripts/**/*.ts", "typings/**/*.ts"],
+         "coffeeProject": "src/assets/scripts/**/*.coffee",
          "jsVendor": "src/assets/scripts/vendor/**/*.js",
 
          "templates": {

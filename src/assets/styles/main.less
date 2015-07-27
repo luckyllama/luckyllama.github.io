@@ -88,7 +88,7 @@ header.main {
 			background: @red;
 			color: @white !important;
 		}
-		&:focus { outline: none; text-decoration: none; color: @red; }
+		&:focus { outline: none; text-decoration: none; }
 	}
 	.menu {
 		border-color: @red;
@@ -176,6 +176,10 @@ header.main {
 
 main {
 	padding-bottom: 2.827em;
+	transition: opacity 0.15s;
+	.loading & {
+		opacity: 0;
+	}
 
 	a {
 		color: @black;
@@ -305,5 +309,21 @@ body > footer {
 	}
 }
 .small-screen-warning { display: none; }
+
+#loading-indicator {
+	position: fixed;
+	display: none;
+	top: 0; left: 0; right: 0; bottom: 0;
+	.loading & { display: block; }
+	img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate3d(-50%, -50%, 0);
+		opacity: 1;
+		transition: .15s;
+		&.inactive { opacity: 0; }
+	}
+}
 
 @import "responsive";

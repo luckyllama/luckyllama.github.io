@@ -1,11 +1,3 @@
-///ts:ref=lodash
-/// <reference path="../../vendor/lodash.d.ts"/> ///ts:ref:generated
-///ts:ref=jquery
-/// <reference path="../../vendor/jquery.d.ts"/> ///ts:ref:generated
-///ts:ref=d3
-/// <reference path="../../vendor/d3.d.ts"/> ///ts:ref:generated
-///ts:ref=modernizr
-/// <reference path="../../vendor/modernizr.d.ts"/> ///ts:ref:generated
 
 module Sorting {
 	export class Algorithm {
