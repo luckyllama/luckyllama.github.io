@@ -184,10 +184,10 @@ main {
 	a {
 		color: @black;
 		display: inline-block;
-		box-shadow: inset 0 -.2em 0 fade(@blue, 100%);
+		box-shadow: inset 0 -.1em 0 fade(@blue, 100%);
 		line-height: 1.3;
 		display: inline-block;
-		transition: box-shadow .2s;
+		transition: box-shadow .125s;
 	}
 	a:hover {
 		color: @black;
@@ -225,6 +225,13 @@ main {
 
 	article {
 		> * { .standard-size; }
+		pre {
+			padding-bottom: 1em;
+			background: #f9f9f9;
+			border: none;
+			code { font-size: inherit; }
+		}
+		code { font-size: 80%; }
 
 		img {
 			max-width: 100%;

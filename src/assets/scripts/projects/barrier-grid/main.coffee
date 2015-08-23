@@ -28,11 +28,11 @@
 				$("<i>").addClass("fa fa-angle-double-right")
 			)
 			@$backward = $("<span>").addClass("fa fa-angle-double-left")
-			@$hideMaskButton = $("<span>").addClass("show-base").text("hide mask").prepend(
-				$("<i>").addClass("fa fa-square")
+			@$hideMaskButton = $("<span>").addClass("show-base").prepend(
+				$("<i>").addClass("fa fa-circle")
 			)
-			@$halfMaskButton = $("<span>").addClass("show-base half").text("hide half mask").prepend(
-				$("<i>").addClass("fa fa-columns")
+			@$halfMaskButton = $("<span>").addClass("show-base half").prepend(
+				$("<i>").addClass("fa fa-adjust")
 			)
 			@$dragHint = $("<div>").addClass("drag-hint").text("drag to animate").prepend(
 				$("<i>").addClass("fa fa-arrow-h")
@@ -44,9 +44,9 @@
 						.append(@$forward)
 				)
 				.append(
-					$("<div>").addClass("mask-controls")
-						.append(@$hideMaskButton)
+					$("<div>").addClass("mask-controls").text("hide mask:")
 						.append(@$halfMaskButton)
+						.append(@$hideMaskButton)
 				)
 				.append(@$dragHint)
 				.appendTo(@$el)
