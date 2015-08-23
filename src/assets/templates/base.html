@@ -40,26 +40,20 @@
       </nav>
    </header>
 
-    <main>
+   <main>
       {% block content %}{% endblock %}
-    </main>
+   </main>
 
-   <footer>
-      {% include "includes/author-bio.html" %}
-
-      <small>
-         <hr />
-         <span>&copy; {{ now()|date("Y") }} {{ site.owner.name }}
-      </small>
-   </footer>
+   {% include "includes/footer.html" %}
 
    <div id="loading-indicator">
 
    </div>
 
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="/assets/scripts/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="/assets/scripts/vendor/jquery.min.js"><\/script>')</script>
    <script src="/assets/scripts/vendor/lodash-2.4.1.min.js"></script>
+   <script src="/assets/scripts/vendor/bootstrap.min.js"></script>
 
    <!--script src="/assets/scripts/app/ajax-load.js"></script-->
    <script src="/assets/scripts/app.min.js"></script>

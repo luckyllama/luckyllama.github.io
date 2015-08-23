@@ -5,18 +5,20 @@ title: "All Articles"
 {% extends "base.html" %}
 
 {% block content %}
-   <section class="article-list">
-      {% for article in site.articles %}
-         <article>
-            <h3><a href="{{article.url}}">{{article.title}}</a></h3>
-            {% if article.date %}<div class="posted">Posted on {{ article.date | date("F j, Y") }}</div>{% endif %}
-            {% if article.summaryImage %}<a href="{{article.url}}"><img src="/assets/images/{{ article.summaryImage }}" /></a>{% endif %}
-            <p>
-               {{ article.summary | truncate(300) | safe }}
-            </p>
-            <a class="more" href="{{article.url}}">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
-         </article>
-         <hr />
-      {% endfor %}
+   <section class="article-list container">
+         {% for article in site.articles %}
+            <div class="row">
+               <article class="col-xs-12 col-md-8 col-md-offset-2">
+                  <h3><a href="{{article.url}}">{{article.title}}</a></h3>
+                  {% if article.date %}<div class="posted">Posted on {{ article.date | date("F j, Y") }}</div>{% endif %}
+                  {% if article.summaryImage %}<a href="{{article.url}}"><img src="/assets/images/{{ article.summaryImage }}" /></a>{% endif %}
+                  <p>
+                     {{ article.summary | truncate(300) | safe }}
+                  </p>
+                  <a class="more" href="{{article.url}}">Read more <i class="fa fa-arrow-circle-o-right"></i></a>
+               </article>
+               <hr class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5">
+            </div>
+         {% endfor %}
    </section>
 {% endblock %}

@@ -3,9 +3,14 @@
 
 {% block content %}
    {% include "includes/hero.html" %}
-   <article>
-      {% include "includes/article-header.html" %}
-      {{content|safe}}
-      {% include "includes/article-footer.html" %}
-   </article>
+
+   <div class="container">
+      <div class="row">
+         <article class="col-xs-12 col-md-8 col-md-offset-2">
+            {% include "includes/article-header.html" %}
+            {{content|safe}}
+            {% include "includes/article-footer.html" %}
+         </article>
+      </div>
+   </div>
 {% endblock %}

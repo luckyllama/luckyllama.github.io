@@ -196,14 +196,16 @@ class SortingView {
 	}
 
 	createHtml() {
-		var $controls = $("<div>").addClass("controls")
-			.html("<label for='algorithm'>Algorithm: </label>")
-			.append($("<select id='algorithm' name='algorithm'>")
-			.append($("<option>").text("bubblesort"))
-			.append($("<option>").text("heapsort"))
-			.append($("<option>").text("insertionsort"))
-			.append($("<option>").text("selectionsort"))
-			.append($("<option>").text("quicksort")));
+		var $controls = $("<form>").addClass("controls form-inline")
+			.append($("<div>").addClass("form-group").append(
+				"<label for='algorithm'>Algorithm: </label>",
+				$("<select id='algorithm' name='algorithm'>").addClass("form-control")
+					.append($("<option>").text("bubblesort"))
+					.append($("<option>").text("heapsort"))
+					.append($("<option>").text("insertionsort"))
+					.append($("<option>").text("selectionsort"))
+					.append($("<option>").text("quicksort"))
+			));
 		this.$el.append($controls);
 		this.$el.append($("<div class='visual'>"));
 		var $facts = $("<div class='facts'>")
