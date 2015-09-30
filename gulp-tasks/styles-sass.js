@@ -2,7 +2,7 @@ var onError = require('./on-error')
 
 module.exports = function (gulp, build, plugins) {
   return function () {
-    gulp.src(build.paths.scss)
+    gulp.src(build.paths.sass, build.gulpSettings)
       .pipe(plugins.plumber({ errorHandler: onError }))
       .pipe(plugins.sass({ sourcemap: true }))
       .pipe(plugins.sourcemaps.init({ loadMaps: true }))

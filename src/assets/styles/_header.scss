@@ -1,0 +1,48 @@
+header {
+  @extend .sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 1;
+  position: fixed;
+  width: 100%;
+  padding: 10px 20px 13px;
+  box-sizing: border-box;
+  text-align: center;
+  border-bottom: solid 1px $dark-light;
+  background: $light;
+
+  a {
+    display: inline-block;
+    color: $dark;
+    text-decoration: none;
+    transition: color .2s;
+    &:hover { color: $accent; }
+  }
+  .logo {
+    font-size: 1.777rem;
+  }
+  nav {
+    padding-top: 6px;
+    &.primary { float: left; }
+    &.secondary { float: right; }
+    ul {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-block;
+        list-style: none;
+        padding: 0 4px;
+        a { padding: 0 4px; }
+        &:first-child {
+          padding-left: 0;
+          a { padding-left: 0; }
+        }
+        &:last-child {
+          padding-right: 0;
+          a { padding-right: 0; }
+        }
+      }
+    }
+  }
+}
