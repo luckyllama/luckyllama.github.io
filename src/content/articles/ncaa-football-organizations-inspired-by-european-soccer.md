@@ -10,7 +10,7 @@ comments: true
 ---
 
 <figure>
-	<img src="/assets/images/projects/football-conference-map.png">
+	<img src="/images/projects/football-conference-map.png">
 	<figcaption></figcaption>
 </figure>
 

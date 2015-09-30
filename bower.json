@@ -1,0 +1,18 @@
+{
+  "name": "luckyllama.github.io",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.0",
+    "modernizr": "~2.8.3",
+    "normalize-css": "~3.0.3",
+    "d3": "~3.5.6"
+  },
+  "overrides": {
+    "modernizr": {
+      "main": [
+        "./modernizr.js"
+      ]
+    }
+  }
+}

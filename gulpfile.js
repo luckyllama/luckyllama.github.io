@@ -2,209 +2,88 @@
 "use strict";
 
 var gulp = require("gulp");
-var $ = require("gulp-load-plugins")();
+var plugins = require("gulp-load-plugins")();
 var del = require("del");
-var path = require("path");
-var swig = require("swig");
-var swigExtras = require("swig-extras");
-var through = require("through2");
 var runSequence = require("run-sequence");
-var merge = require("merge-stream");
+var browserSync = require("browser-sync");
 
-var config = require("./config.json");
+var config = require("./config.js");
 var build = config.build;
 var paths = build.paths;
 
 var onError = function (err) {
-	$.util.beep();
-	$.util.log($.util.colors.green(err));
+	plugins.util.beep();
+	plugins.util.log(plugins.util.colors.green(err));
 	this.emit("end"); // tells watch to keep going, we"re done
 };
 var settings = { base: build.src };
-var site = config.site;
 
-gulp.task("styles", function () {
-	return gulp.src(paths.less, settings)
-		.pipe($.plumber({ errorHandler: onError }))
-		.pipe($.less({ paths: [ path.join(__dirname, "less", "includes") ] }))
-		.pipe($.autoprefixer({ browsers: build.browsers }))
-		.pipe(gulp.dest(build.dest));
-});
+gulp.task("styles:css", require("./gulp-tasks/styles-css")(gulp, build, plugins))
+gulp.task("styles:sass", require("./gulp-tasks/styles-sass")(gulp, build, plugins))
+gulp.task("styles:less", require("./gulp-tasks/styles-less")(gulp, build, plugins))
+gulp.task("styles", ["styles:css", "styles:sass", "styles:less"])
 
-swig.setDefaults({
-    loader: swig.loaders.fs(path.join(__dirname, paths.templates.base)),
-    locals: { now: function () { return new Date(); } },
-    cache: false
-});
-swigExtras.useFilter(swig, "truncate");
+gulp.task("scripts:typescript", require("./gulp-tasks/scripts-typescript")(gulp, build, plugins))
+gulp.task("scripts:jshint", require("./gulp-tasks/scripts-jshint")(gulp, build, plugins))
+gulp.task("scripts:bower", require("./gulp-tasks/scripts-bower")(gulp, build, plugins))
+gulp.task("scripts:coffeescript", require("./gulp-tasks/scripts-coffeescript")(gulp, build, plugins))
+gulp.task("scripts", ["scripts:jshint", "scripts:typescript", "scripts:coffeescript", "scripts:bower"])
 
-var applyTemplate = function (templateFile) {
-   var template = swig.compileFile(path.join(__dirname, templateFile));
+gulp.task("static:root", require("./gulp-tasks/static-root")(gulp, build, plugins))
+gulp.task("static:all", require("./gulp-tasks/static")(gulp, build, plugins))
+gulp.task("static", ["static:root", "static:all"])
 
-   return through.obj(function (file, encoding, callback) {
-      var data = {
-         site: site,
-         page: file.page,
-         content: file.contents.toString()
-      };
-      file.contents = new Buffer(template(data), "utf8");
-      this.push(file);
-      callback();
-   });
-};
+gulp.task("html", require("./gulp-tasks/html")(gulp, config, plugins))
 
-// inspiration from http://blog.crushingpennies.com/a-static-site-generator-with-gulp-proseio-and-travis-ci.html
-gulp.task("articles", function () {
-   var articlesHtml = gulp.src(paths.articles, { base: build.src + "/content" })
-      .pipe($.frontMatter({ property: "page", remove: true }))
-      .pipe($.marked())
-      // Collect all the articles and place them on the site object.
-      .pipe((function () {
-         var articles = [];
-         return through.obj(function (file, encoding, callback) {
-            file.page.url = path.relative(file.cwd + "/" + file.base, file.path);
-            articles.push(file.page);
-            articles[articles.length - 1].content = file.contents.toString();
-            this.push(file);
-            callback();
-         },
-         function (callback) {
-            articles.sort(function (a, b) {
-               return b.date - a.date;
-            });
-				articles = articles.filter(function (article) {
-					return typeof article.published === "undefined" || article.published;
-				});
-            site.articles = articles;
-            callback();
-         });
-      })())
-      .pipe(applyTemplate(paths.templates.article))
-		.pipe($.highlight())
-      .pipe($.rename({extname: ".html"}));
-
-   var articlesJson = gulp.src(paths.articles, { base: build.src + "/content" })
-      .pipe($.frontMatter({ property: "page", remove: true }))
-      .pipe($.marked())
-      .pipe(applyTemplate(paths.templates.articleJson))
-      .pipe($.rename({ extname: ".json.js" }));
-
-	return merge(articlesHtml, articlesJson)
-		.pipe(gulp.dest(build.dest));
-});
-
-gulp.task("pages", ["articles"], function () {
-   var html = gulp.src([paths.pagesHtml])
-      .pipe($.frontMatter({property: "page", remove: true}))
-      .pipe(through.obj(function (file, enc, callback) {
-         var data = {
-            site: site,
-            page: {}
-         };
-         var template = swig.compileFile(file.path);
-         file.contents = new Buffer(template(data), "utf8");
-         this.push(file);
-         callback();
-      }));
-
-   var markdown = gulp.src(paths.pagesMarkdown)
-      .pipe($.frontMatter({property: "page", remove: true}))
-      .pipe($.marked())
-      .pipe(applyTemplate(paths.templates.page))
-      .pipe($.rename({extname: ".html"}));
-
-	var pageJson = gulp.src([paths.pagesMarkdown, paths.pagesHtml])
-      .pipe($.frontMatter({property: "page", remove: true}))
-      .pipe(through.obj(function (file, enc, callback) {
-         var data = {
-            site: site,
-            page: {}
-         };
-        	var contents = String(file.contents);
-			contents = contents.replace(/{%\sextends.*%}/gi, ""); // remove {extends} swig tag
-         var template = swig.compile(contents, { filename: file.path });
-         file.contents = new Buffer(template(data), "utf8");
-         this.push(file);
-         callback();
-      }))
-      .pipe(applyTemplate(paths.templates.pageJson))
-		.pipe($.rename({ extname: ".json.js" }));
-
-	return merge(html, markdown, pageJson)
-		.pipe(gulp.dest(build.dest));
-});
-
-gulp.task("jshint", function () {
-	return gulp.src(paths.jsGeneral)
-		.pipe($.jshint())
-		.pipe($.jshint.reporter("jshint-stylish"));
-});
-gulp.task("typescript", function () {
-	var tsconfig = $.typescript.createProject("tsconfig.json");
-   return gulp.src(paths.tsProject, settings)
-		.pipe($.typescript(tsconfig))
-		.pipe(gulp.dest(build.dest));
-});
-gulp.task("coffeescript", function () {
-	return gulp.src(paths.coffeeProject, settings)
-		.pipe($.coffee().on('error', onError))
-		.pipe(gulp.dest(build.dest));
-});
-gulp.task("scripts", ["jshint", "typescript", "coffeescript"], function () {
-	var projectJs = gulp.src([paths.jsProject, paths.jsVendor], settings);
-
-	var generalJs = gulp.src(paths.jsGeneral, settings)
-		.pipe($.size({title: "js:general::before"}))
-		.pipe($.plumber())
-		.pipe($.uglify())
-		.pipe($.concat(paths.jsGeneralDest))
-		.pipe($.size({title: "js:general::after"}));
-
-	return merge(projectJs, generalJs)
-		.pipe(gulp.dest(build.dest));
-});
-
-gulp.task("images", function () {
-	return gulp.src(paths.images, settings)
-      .pipe($.changed(build.dest))
-		.pipe(gulp.dest(build.dest))
-		.pipe($.size({title: "images"}));
-});
-gulp.task("static", ["images"], function () {
-	var staticAssets = gulp.src(paths.staticAssets, settings)
-		.pipe($.changed(build.dest))
-		.pipe(gulp.dest(build.dest));
-
-	var rootAssets = gulp.src(paths.rootAssets)
-		.pipe($.changed(build.dest))
-		.pipe(gulp.dest(build.dest));
-
-	return merge(staticAssets, rootAssets);
-});
+gulp.task("serve", function () {
+  runSequence("build", "watch", function () {
+    browserSync({
+      notify: true,
+      port: config.server.port,
+      server: {
+        baseDir: config.build.paths.dest,
+        routes: config.server.routes,
+        directory: false
+      }
+    })
+  })
+})
 
 gulp.task("watch", function () {
-	gulp.watch(paths.styles, ["styles"]);
-	gulp.watch([paths.templates.base + "/**/*", paths.pagesHtml, paths.articles], ["pages"]);
-   gulp.watch([paths.jsGeneral, paths.jsProject, paths.jsVendor], ["scripts"]);
-	gulp.watch(paths.coffeeProject, ["coffeescript"]);
-	gulp.watch(paths.tsProject, ["typescript"]);
-	gulp.watch([
-		paths.staticAssets,
-		paths.images
-	], ["static"]);
-});
+  gulp.watch(build.paths.sass, ["styles:sass", browserSync.reload])
+  gulp.watch(build.paths.less, ["styles:less", browserSync.reload])
+  gulp.watch(build.paths.css, ["styles:css", browserSync.reload])
+  gulp.watch(build.paths.coffee, ["scripts:coffeescript", browserSync.reload])
+  gulp.watch(build.paths.typescript, ["scripts:typescript", browserSync.reload])
+  gulp.watch(build.paths.vendorSrc, ["scripts:bower", browserSync.reload])
+  gulp.watch(build.paths.static, ["static", browserSync.reload])
+  gulp.watch(build.paths.htmlWatch, ["html", browserSync.reload])
+})
 
-gulp.task("clean", del.bind(null, build.clean, { dot: true }));
+
+// gulp.task("watch", function () {
+// 	gulp.watch(paths.styles, ["styles"]);
+// 	gulp.watch([paths.templates.base + "/**/*", paths.pagesHtml, paths.articles], ["pages"]);
+//    gulp.watch([paths.jsGeneral, paths.jsProject, paths.jsVendor], ["scripts"]);
+// 	gulp.watch(paths.coffeeProject, ["coffeescript"]);
+// 	gulp.watch(paths.tsProject, ["typescript"]);
+// 	gulp.watch([
+// 		paths.staticAssets,
+// 		paths.images
+// 	], ["static"]);
+// });
 
 gulp.task("default", function() {
-	runSequence("build", "watch");
+	runSequence("serve");
 });
 
-gulp.task("build", ["clean"], function () {
-	runSequence("styles", "scripts", "static", "pages");
-});
+gulp.task("clean", del.bind(null, build.paths.clean, { dot: true }));
+
+gulp.task("build", function (callback) {
+  return runSequence("clean", ["styles", "scripts", "html", "static"], function () { callback() })
+})
 
 gulp.task("deploy", function () {
    return gulp.src(build.dest + "**/*")
-      .pipe($.ghPages({ branch: "master" }));
+      .pipe(plugins.ghPages({ branch: "master" }));
 });

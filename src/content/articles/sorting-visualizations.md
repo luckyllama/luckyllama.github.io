@@ -12,8 +12,8 @@ tags: [projects]
 comments: true
 
 scripts:
-  - /assets/scripts/vendor/d3.min.js
-  - /assets/scripts/projects/sorting/sorting.js
+  - /scripts/vendor/d3.min.js
+  - /scripts/projects/sorting/sorting.js
 hero: sorting
 ---
 
@@ -27,7 +27,7 @@ Most algorithms were copied from either [sortvis.org](http://sortvis.org) or
 [Rosetta Code](http://rosettacode.org/wiki/Sorting_algorithms).
 
 <br>
-You can view all the typescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/dev/src/assets/scripts/projects/sorting/sorting.ts).
+You can view all the typescript code on [github](https://github.com/luckyllama/luckyllama.github.io/blob/dev/src/scripts/projects/sorting/sorting.ts).
 
 <br>
 _Note: SVG is an advanced browser feature. I've only tested this page in the lastest version of Chrome and Firefox, IE9,

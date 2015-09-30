@@ -2,17 +2,23 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "declaration": false,
         "noImplicitAny": false,
         "noExternalResolve": false,
         "removeComments": true,
         "noLib": false,
+        "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true
     },
     "compileOnSave": false,
     "filesGlob": [
         "./**/*.ts",
-        "!./node_modules/**/*.ts"
+        "./**/*.tsx",
+        "!./node_modules/**/*"
     ],
     "files": [
         "./src/assets/scripts/app/ajax-load.ts",

@@ -13,9 +13,9 @@ tags: [projects]
 comments: true
 
 scripts:
-  - /assets/scripts/vendor/d3.min.js
-  - /assets/scripts/projects/music-art/music-xml.js
-  - /assets/scripts/projects/music-art/view.js
+  - /scripts/vendor/d3.min.js
+  - /scripts/projects/music-art/music-xml.js
+  - /scripts/projects/music-art/view.js
 
 hero: canvas-container
 ---

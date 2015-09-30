@@ -22,21 +22,21 @@ _We found ourselves with some spare hardware, a blank canvas, and an idea for an
 Our office here in Seattle spans two floors and we have a stairwell—and most importantly a large wall—connecting the two. The lower floor has become our new HAX area so we thought a new HAX project would be the perfect way to transition down to that space. We wanted something large and interactive (but not so interactive that someone might trip down the stairs). We wanted something abstract and pretty. We wanted something fun and eye-catching. In the end, we couldn't settle on just one idea.
 
 <figure>
-	![projector diagram](/assets/images/stairwell/Staircase-Projector-Diagram.png)
+	![projector diagram](/images/stairwell/Staircase-Projector-Diagram.png)
 	<figcaption>The projector is mounted on the other side of a hallway that runs parallel to the stairs and projects on roughly 1+½ floors.</figcaption>
 </figure>
 
 Our first challenge was to find a projector. We wanted to fill as much wall space as possible and there was quite a lot of wall with which to work. In the end, we settled on a [short throw projector][hard1] set far enough back that our projection ended up being over 12 feet tall. At that distance, it projected far too wide for the narrow space so we blocked the sides with some foamcore to constrain the image.
 
 <figure>
-	![hardware](/assets/images/stairwell/setup.jpg)
+	![hardware](/images/stairwell/setup.jpg)
 	<figcaption>Setup: projector (top left), webcam (bottom left), and the stairwell and projection surface (right).</figcaption>
 </figure>
 
 Next, we setup a webcam to capture activity on the stairs. We hung a [Microsoft LifeCam][hard2] from the lighting fixture and draped a long usb extension cable over a wall to our waiting computer. The captured video is processed with the [OpenCV][lib4] image processing library where we compare the current video frame to previous video frames and determine what has changed. In this way, we can track motion and activity on the stairs.
 
 <figure>
-	![three examples](/assets/images/stairwell/visual-examples.png)
+	![three examples](/images/stairwell/visual-examples.png)
 	<figcaption>Three of our final visuals: a particle generator (left), a grid based reveal (center), and space invaders (right).</figcaption>
 </figure>
 

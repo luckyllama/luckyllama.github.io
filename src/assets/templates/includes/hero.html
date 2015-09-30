@@ -3,7 +3,7 @@
    <div class="hero">
       <img src=
          {% if page.image.feature.includes("http") %}
-         "{{ page.image.feature }}"{% else %}"/assets/images/{{ page.image.feature }}"
+         "{{ page.image.feature }}"{% else %}"/images/{{ page.image.feature }}"
          {% endif %} alt="{{ page.title }} feature image">
 
       {% if page.image.credit %}
